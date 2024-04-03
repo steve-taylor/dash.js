@@ -422,7 +422,7 @@ function CmcdModel() {
 
     function _getTopBitrateByType(mediaType) {
         try {
-            const info = abrController.getTopBitrateInfoFor(mediaType);
+            const info = abrController.getBitrateInfoList(mediaType, true, true);
             return Math.round(info.bitrate / 1000);
         } catch (e) {
             return null;

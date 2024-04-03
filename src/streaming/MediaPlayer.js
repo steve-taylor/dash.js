@@ -80,6 +80,7 @@ import URLUtils from '../streaming/utils/URLUtils';
 import BoxParser from './utils/BoxParser';
 import TextController from './text/TextController';
 import CustomParametersModel from './models/CustomParametersModel';
+import SwitchRequest from './rules/SwitchRequest';
 
 /**
  * The media types
@@ -949,31 +950,13 @@ function MediaPlayer() {
         AUTO BITRATE
 
     ---------------------------------------------------------------------------
-    */
-    /**
-     * Gets the top quality BitrateInfo checking portal limit and max allowed.
-     * It calls getMaxAllowedIndexFor internally
-     *
-     * @param {MediaType} type - 'video' or 'audio'
-     * @memberof module:MediaPlayer
-     * @returns {BitrateInfo | null}
-     * @throws {@link module:MediaPlayer~STREAMING_NOT_INITIALIZED_ERROR STREAMING_NOT_INITIALIZED_ERROR} if called before initializePlayback function
-     * @instance
-     */
-    function getTopBitrateInfoFor(type) {
-        if (!streamingInitialized) {
-            throw STREAMING_NOT_INITIALIZED_ERROR;
-        }
-        return abrController.getTopBitrateInfoFor(type);
-    }
-
     /**
      * Gets the current download quality for media type video, audio or images. For video and audio types the ABR
      * rules update this value before every new download unless autoSwitchBitrate is set to false. For 'image'
      * type, thumbnails, there is no ABR algorithm and quality is set manually.
      *
      * @param {MediaType} type - 'video', 'audio' or 'image' (thumbnails)
-     * @returns {number} the quality index, 0 corresponding to the lowest bitrate
+     * @returns {BitrateInfo} The bitrate info of the currently selected quality
      * @memberof module:MediaPlayer
      * @see {@link module:MediaPlayer#setQualityFor setQualityFor()}
      * @throws {@link module:MediaPlayer~STREAMING_NOT_INITIALIZED_ERROR STREAMING_NOT_INITIALIZED_ERROR} if called before initializePlayback function
@@ -992,7 +975,63 @@ function MediaPlayer() {
 
             return !thumbnailController ? -1 : thumbnailController.getCurrentTrackIndex();
         }
-        return abrController.getQualityFor(type);
+
+        const bitrateInfo = abrController.getCurrentBitrateInfoFor(type);
+
+        return !bitrateInfo ? 0 : bitrateInfo.absoluteIndex;
+    }
+
+    function getBitrateInfoFor(type) {
+        if (!streamingInitialized) {
+            throw STREAMING_NOT_INITIALIZED_ERROR;
+        }
+        if (type === Constants.IMAGE) {
+            const activeStream = getActiveStream();
+            if (!activeStream) {
+                return -1;
+            }
+            const thumbnailController = activeStream.getThumbnailController();
+
+            return !thumbnailController ? -1 : thumbnailController.getCurrentTrackIndex();
+        }
+
+        return abrController.getCurrentBitrateInfoFor(type);
+    }
+
+    /**
+     * @param {MediaType} type
+     * @returns {Array}
+     * @memberof module:MediaPlayer
+     * @throws {@link module:MediaPlayer~STREAMING_NOT_INITIALIZED_ERROR STREAMING_NOT_INITIALIZED_ERROR} if called before initializePlayback function
+     * @instance
+     */
+    function getBitrateInfoListFor(type) {
+        if (!streamingInitialized) {
+            throw STREAMING_NOT_INITIALIZED_ERROR;
+        }
+        let stream = getActiveStream();
+        return stream ? stream.getBitrateInfoListFor(type) : [];
+    }
+
+    function getAbsoluteIndexForRepresentationId(mediaInfo, representationId) {
+        if (!streamingInitialized) {
+            throw STREAMING_NOT_INITIALIZED_ERROR;
+        }
+
+        const list = abrController.getBitrateInfoList(mediaInfo, true, false);
+
+        let absoluteIndex = 0;
+        let i = 0;
+        while (i < list.length && absoluteIndex === 0) {
+            const bitrateInfo = list[i];
+
+            if (bitrateInfo.representationId === representationId) {
+                absoluteIndex = i;
+            }
+            i += 1;
+        }
+
+        return absoluteIndex;
     }
 
     /**
@@ -1021,7 +1060,15 @@ function MediaPlayer() {
                 thumbnailController.setTrackByIndex(value);
             }
         }
-        abrController.setPlaybackQuality(type, streamController.getActiveStreamInfo(), value, { forceReplace });
+
+        const mediaInfo = streamController.getActiveStream().getMediaInfo(type);
+        if (mediaInfo) {
+            const bitrateInfo = abrController.getBitrateInfoByIndex(mediaInfo, value, true, false)
+            const switchRequest = SwitchRequest(context).create();
+            switchRequest.bitrateInfo = bitrateInfo;
+            switchRequest.reason = { forceReplace, rule: this.getClassName() }
+            abrController.setPlaybackQuality(switchRequest);
+        }
     }
 
     /**
@@ -1480,20 +1527,7 @@ function MediaPlayer() {
 
     ---------------------------------------------------------------------------
     */
-    /**
-     * @param {MediaType} type
-     * @returns {Array}
-     * @memberof module:MediaPlayer
-     * @throws {@link module:MediaPlayer~STREAMING_NOT_INITIALIZED_ERROR STREAMING_NOT_INITIALIZED_ERROR} if called before initializePlayback function
-     * @instance
-     */
-    function getBitrateInfoListFor(type) {
-        if (!streamingInitialized) {
-            throw STREAMING_NOT_INITIALIZED_ERROR;
-        }
-        let stream = getActiveStream();
-        return stream ? stream.getBitrateListFor(type) : [];
-    }
+
 
     /**
      * This method returns the list of all available streams from a given manifest
@@ -2523,12 +2557,12 @@ function MediaPlayer() {
         getSource,
         updateSource,
         getCurrentLiveLatency,
-        getTopBitrateInfoFor,
         setAutoPlay,
         getAutoPlay,
         getDashMetrics,
         getQualityFor,
         setQualityFor,
+        getBitrateInfoFor,
         updatePortalSize,
         enableText,
         enableForcedTextStreaming,
@@ -2577,7 +2611,8 @@ function MediaPlayer() {
         updateSettings,
         resetSettings,
         reset,
-        destroy
+        destroy,
+        getAbsoluteIndexForRepresentationId
     };
 
     setup();

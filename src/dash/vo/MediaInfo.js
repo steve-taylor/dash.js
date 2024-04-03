@@ -64,6 +64,7 @@ class MediaInfo {
         this.essentialPropertiesAsArray = [];
         this.segmentAlignment = false;
         this.subSegmentAlignment = false;
+        this.adaptationSetSwitchingCompatibleIds = []
     }
 
 }

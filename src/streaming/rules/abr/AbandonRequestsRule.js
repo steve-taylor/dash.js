@@ -63,7 +63,8 @@ function AbandonRequestsRule(config) {
     }
 
     function shouldAbandon(rulesContext) {
-        const switchRequest = SwitchRequest(context).create(SwitchRequest.NO_CHANGE, {name: AbandonRequestsRule.__dashjs_factory_name});
+        const switchRequest = SwitchRequest(context).create();
+        switchRequest.reason = { name: AbandonRequestsRule.__dashjs_factory_name };
 
         if (!rulesContext || !rulesContext.hasOwnProperty('getMediaInfo') || !rulesContext.hasOwnProperty('getMediaType') || !rulesContext.hasOwnProperty('getCurrentRequest') ||
             !rulesContext.hasOwnProperty('getRepresentationInfo') || !rulesContext.hasOwnProperty('getAbrController')) {
@@ -73,7 +74,6 @@ function AbandonRequestsRule(config) {
         const mediaInfo = rulesContext.getMediaInfo();
         const mediaType = rulesContext.getMediaType();
         const streamInfo = rulesContext.getStreamInfo();
-        const streamId = streamInfo ? streamInfo.id : null;
         const req = rulesContext.getCurrentRequest();
 
         if (!isNaN(req.index)) {
@@ -81,7 +81,7 @@ function AbandonRequestsRule(config) {
 
             const stableBufferTime = mediaPlayerModel.getStableBufferTime();
             const bufferLevel = dashMetrics.getCurrentBufferLevel(mediaType);
-            if ( bufferLevel > stableBufferTime ) {
+            if (bufferLevel > stableBufferTime) {
                 return switchRequest;
             }
 
@@ -119,19 +119,17 @@ function AbandonRequestsRule(config) {
 
                     const abrController = rulesContext.getAbrController();
                     const bytesRemaining = fragmentInfo.bytesTotal - fragmentInfo.bytesLoaded;
-                    const bitrateList = abrController.getBitrateList(mediaInfo);
-                    const quality = abrController.getQualityForBitrate(mediaInfo, fragmentInfo.measuredBandwidthInKbps * settings.get().streaming.abr.bandwidthSafetyFactor, streamId);
-                    const minQuality = abrController.getMinAllowedIndexFor(mediaType, streamId);
-                    const newQuality = (minQuality !== undefined) ? Math.max(minQuality, quality) : quality;
-                    const estimateOtherBytesTotal = fragmentInfo.bytesTotal * bitrateList[newQuality].bitrate / bitrateList[abrController.getQualityFor(mediaType, streamId)].bitrate;
+                    const bitrateInfo = abrController.getBitrateInfoByBitrate(mediaInfo, fragmentInfo.measuredBandwidthInKbps * settings.get().streaming.abr.bandwidthSafetyFactor, true, true);
+                    const currentBitrateInfo = abrController.getCurrentBitrateInfoFor(mediaType, streamInfo.id);
+                    const estimateOtherBytesTotal = fragmentInfo.bytesTotal * bitrateInfo.bitrate / currentBitrateInfo.bitrate;
 
                     if (bytesRemaining > estimateOtherBytesTotal) {
-                        switchRequest.quality = newQuality;
+                        switchRequest.bitrateInfo = bitrateInfo;
                         switchRequest.reason.throughput = fragmentInfo.measuredBandwidthInKbps;
                         switchRequest.reason.fragmentID = fragmentInfo.id;
                         switchRequest.reason.rule = this.getClassName();
                         abandonDict[fragmentInfo.id] = fragmentInfo;
-                        logger.debug('[' + mediaType + '] frag id',fragmentInfo.id,' is asking to abandon and switch to quality to ', newQuality, ' measured bandwidth was', fragmentInfo.measuredBandwidthInKbps);
+                        logger.debug('[' + mediaType + '] frag id', fragmentInfo.id, ' is asking to abandon and switch to quality to ', bitrateInfo.qualityIndex, ' measured bandwidth was', fragmentInfo.measuredBandwidthInKbps);
                         delete fragmentDict[mediaType][fragmentInfo.id];
                     }
                 }

@@ -428,11 +428,14 @@ app.controller('DashController', ['$scope', '$window', 'sources', 'contributors'
 
     $scope.player.on(dashjs.MediaPlayer.events.REPRESENTATION_SWITCH, function (e) {
         var bitrate = Math.round(e.currentRepresentation.bandwidth / 1000);
+        var availableBitrateInfos = $scope.player.getBitrateInfoListFor(e.mediaType);
+        var maxIndex = availableBitrateInfos.length;
+        var index = $scope.player.getAbsoluteIndexForRepresentationId(e.mediaInfo, e.currentRepresentation.id) + 1;
 
-        $scope[e.mediaType + 'PendingIndex'] = e.currentRepresentation.index + 1;
-        $scope[e.mediaType + 'PendingMaxIndex'] = e.numberOfRepresentations;
+        $scope[e.mediaType + 'PendingIndex'] = index;
+        $scope[e.mediaType + 'PendingMaxIndex'] = maxIndex;
         $scope[e.mediaType + 'Bitrate'] = bitrate;
-        $scope.plotPoint('pendingIndex', e.mediaType, e.newQuality + 1, getTimeForPlot());
+        $scope.plotPoint('pendingIndex', e.mediaType, index, getTimeForPlot());
         $scope.safeApply();
     }, $scope);
 
@@ -442,8 +445,9 @@ app.controller('DashController', ['$scope', '$window', 'sources', 'contributors'
     }, $scope);
 
     $scope.player.on(dashjs.MediaPlayer.events.QUALITY_CHANGE_RENDERED, function (e) { /* jshint ignore:line */
-        $scope[e.mediaType + 'Index'] = e.newQuality + 1;
-        $scope.plotPoint('index', e.mediaType, e.newQuality + 1, getTimeForPlot());
+        const index = $scope.player.getAbsoluteIndexForRepresentationId(e.mediaInfo, e.representationId);
+        $scope[e.mediaType + 'Index'] = index + 1;
+        $scope.plotPoint('index', e.mediaType, index + 1, getTimeForPlot());
         $scope.safeApply();
     }, $scope);
 
@@ -2060,18 +2064,15 @@ app.controller('DashController', ['$scope', '$window', 'sources', 'contributors'
 
     function updateMetrics(type) {
         var dashMetrics = $scope.player.getDashMetrics();
-        var dashAdapter = $scope.player.getDashAdapter();
 
         if (dashMetrics && $scope.currentStreamInfo) {
-            var period = dashAdapter.getPeriodById($scope.currentStreamInfo.id);
-            var periodIdx = period ? period.index : $scope.currentStreamInfo.index;
-
-            var maxIndex = dashAdapter.getMaxIndexForBufferType(type, periodIdx);
-            var repSwitch = dashMetrics.getCurrentRepresentationSwitch(type, true);
             var bufferLevel = dashMetrics.getCurrentBufferLevel(type, true);
-            var index = $scope.player.getQualityFor(type);
+            var currentBitrateInfo = $scope.player.getBitrateInfoFor(type);
+            var availableBitrateInfos = $scope.player.getBitrateInfoListFor(type);
+            var maxIndex = availableBitrateInfos.length;
+            var index = $scope.player.getAbsoluteIndexForRepresentationId(currentBitrateInfo.mediaInfo, currentBitrateInfo.representationId) + 1;
 
-            var bitrate = repSwitch ? Math.round(dashAdapter.getBandwidthForRepresentation(repSwitch.to, periodIdx) / 1000) : NaN;
+
             var droppedFramesMetrics = dashMetrics.getCurrentDroppedFrames();
             var droppedFPS = droppedFramesMetrics ? droppedFramesMetrics.droppedFrames : 0;
             var liveLatency = 0;
@@ -2101,7 +2102,7 @@ app.controller('DashController', ['$scope', '$window', 'sources', 'contributors'
                 var time = getTimeForPlot();
                 $scope.plotPoint('buffer', type, bufferLevel, time);
                 $scope.plotPoint('index', type, index, time);
-                $scope.plotPoint('bitrate', type, bitrate, time);
+                $scope.plotPoint('bitrate', type, currentBitrateInfo.bitrate, time);
                 $scope.plotPoint('droppedFPS', type, droppedFPS, time);
                 $scope.plotPoint('liveLatency', type, liveLatency, time);
                 $scope.plotPoint('playbackRate', type, playbackRate, time);

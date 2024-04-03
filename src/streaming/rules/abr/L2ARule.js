@@ -301,7 +301,7 @@ function L2ARule(config) {
      * @param {object} rulesContext
      * @return {object}
      */
-    function getMaxIndex(rulesContext) {
+    function getSwitchRequest(rulesContext) {
         const switchRequest = SwitchRequest(context).create();
         const horizon = 4; // Optimization horizon (The amount of steps required to achieve convergence)
         const vl = Math.pow(horizon, 0.99);// Cautiousness parameter, used to control aggressiveness of the bitrate decision process.
@@ -363,7 +363,7 @@ function L2ARule(config) {
 
         switch (l2AState.state) {
             case L2A_STATE_STARTUP:
-                quality = abrController.getQualityForBitrate(mediaInfo, safeThroughput, streamInfo.id, latency);//During strat-up phase abr.controller is responsible for bitrate decisions.
+                quality = abrController.getQualityIndexForBitrate(mediaInfo, safeThroughput, streamInfo.id, latency);//During strat-up phase abr.controller is responsible for bitrate decisions.
                 switchRequest.quality = quality;
                 switchRequest.reason.throughput = safeThroughput;
                 l2AState.lastQuality = quality;
@@ -459,7 +459,7 @@ function L2ARule(config) {
             default:
                 // should not arrive here, try to recover
                 logger.debug('L2A ABR rule invoked in bad state.');
-                switchRequest.quality = abrController.getQualityForBitrate(mediaInfo, safeThroughput, streamInfo.id, latency);
+                switchRequest.quality = abrController.getQualityIndexForBitrate(mediaInfo, safeThroughput, streamInfo.id, latency);
                 switchRequest.reason.state = l2AState.state;
                 switchRequest.reason.throughput = safeThroughput;
                 switchRequest.reason.latency = latency;
@@ -490,8 +490,8 @@ function L2ARule(config) {
     }
 
     instance = {
-        getMaxIndex: getMaxIndex,
-        reset: reset
+        getSwitchRequest,
+        reset
     };
 
     setup();

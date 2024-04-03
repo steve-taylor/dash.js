@@ -1026,6 +1026,7 @@ function Settings() {
             abr: {
                 movingAverageMethod: Constants.MOVING_AVERAGE_SLIDING_WINDOW,
                 ABRStrategy: Constants.ABR_STRATEGY_DYNAMIC,
+                enableSupplementalPropertyAdaptationSetSwitching: true,
                 additionalAbrRules: {
                     insufficientBufferRule: true,
                     switchHistoryRule: true,

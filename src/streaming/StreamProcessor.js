@@ -37,7 +37,6 @@ import NotFragmentedTextBufferController from './text/NotFragmentedTextBufferCon
 import ScheduleController from './controllers/ScheduleController';
 import RepresentationController from '../dash/controllers/RepresentationController';
 import FactoryMaker from '../core/FactoryMaker';
-import {checkInteger} from './utils/SupervisorTools';
 import EventBus from '../core/EventBus';
 import Events from '../core/events/Events';
 import MediaPlayerEvents from './MediaPlayerEvents';
@@ -97,7 +96,6 @@ function StreamProcessor(config) {
         logger = Debug(context).getInstance().getLogger(instance);
         resetInitialSettings();
 
-        eventBus.on(Events.DATA_UPDATE_COMPLETED, _onDataUpdateCompleted, instance, { priority: EventBus.EVENT_PRIORITY_HIGH }); // High priority to be notified before Stream
         eventBus.on(Events.INIT_FRAGMENT_NEEDED, _onInitFragmentNeeded, instance);
         eventBus.on(Events.MEDIA_FRAGMENT_NEEDED, _onMediaFragmentNeeded, instance);
         eventBus.on(Events.INIT_FRAGMENT_LOADED, _onInitFragmentLoaded, instance);
@@ -155,6 +153,7 @@ function StreamProcessor(config) {
 
         representationController = RepresentationController(context).create({
             streamInfo,
+            mediaInfo,
             type,
             abrController,
             dashMetrics,
@@ -248,7 +247,6 @@ function StreamProcessor(config) {
             abrController.unRegisterStreamType(getStreamId(), type);
         }
 
-        eventBus.off(Events.DATA_UPDATE_COMPLETED, _onDataUpdateCompleted, instance);
         eventBus.off(Events.INIT_FRAGMENT_NEEDED, _onInitFragmentNeeded, instance);
         eventBus.off(Events.MEDIA_FRAGMENT_NEEDED, _onMediaFragmentNeeded, instance);
         eventBus.off(Events.INIT_FRAGMENT_LOADED, _onInitFragmentLoaded, instance);
@@ -546,7 +544,7 @@ function StreamProcessor(config) {
         }
 
         if (dashHandler) {
-            const representation = representationController && representationInfo ? representationController.getRepresentationForQuality(representationInfo.quality) : null;
+            const representation = representationController && representationInfo ? representationController.getRepresentationForId(representationInfo.id) : null;
 
             if (shouldUseExplicitTimeForRequest) {
                 request = dashHandler.getSegmentRequestForTime(mediaInfo, representation, bufferingTime);
@@ -568,11 +566,10 @@ function StreamProcessor(config) {
         scheduleController.startScheduleTimer(playbackController.getLowLatencyModeEnabled() ? settings.get().streaming.scheduling.lowLatencyTimeout : settings.get().streaming.scheduling.defaultTimeout);
     }
 
-    function _onDataUpdateCompleted(e) {
-        if (!e.error) {
-            if (!bufferController.getIsBufferingCompleted()) {
-                bufferController.updateBufferTimestampOffset(e.currentRepresentation);
-            }
+    function _onDataUpdateCompleted() {
+        const currentRepresentation = representationController.getCurrentRepresentation()
+        if (!bufferController.getIsBufferingCompleted()) {
+            bufferController.updateBufferTimestampOffset(currentRepresentation);
         }
     }
 
@@ -626,9 +623,8 @@ function StreamProcessor(config) {
 
         // we save the last initialized quality. That way we make sure that the media fragments we are about to append match the init segment
         if (e.segmentType === HTTPRequest.INIT_SEGMENT_TYPE) {
-            const lastInitializedQuality = e.quality;
-            scheduleController.setLastInitializedQuality(lastInitializedQuality);
-            logger.info('[' + type + '] ' + 'lastInitializedRepresentationInfo changed to ' + e.quality);
+            scheduleController.setLastInitializedId(e.representationId);
+            logger.info('[' + type + '] ' + 'lastInitializedRepresentationInfo changed to ' + e.representationId);
         }
 
         if (pendingSwitchToRepresentationInfo) {
@@ -647,17 +643,24 @@ function StreamProcessor(config) {
         if (pendingSwitchToRepresentationInfo) {
             logger.warn(`Canceling queued representation switch to ${pendingSwitchToRepresentationInfo.quality} for ${type}`);
         }
-        logger.debug(`Preparing quality switch for type ${type}`);
-        const newQuality = e.newQuality;
+        if (e.isAdaptationSetSwitch) {
+            logger.debug(`Preparing quality switch to different AdaptationSet for type ${type}`);
+            _prepareAdaptationSwitchQualityChange(e)
+        } else {
+            logger.debug(`Preparing quality within the same AdaptationSet for type ${type}`);
+            _prepareNonAdaptationSwitchQualityChange(e)
+        }
+    }
 
+    function _prepareNonAdaptationSwitchQualityChange(e) {
         qualityChangeInProgress = true;
 
         // Stop scheduling until we are done with preparing the quality switch
         scheduleController.clearScheduleTimer();
 
-        representationController.prepareQualityChange(newQuality);
+        const representationInfo = getRepresentationInfo(e.newBitrateInfo.representationId);
+        representationController.prepareQualityChange(representationInfo.id);
 
-        const representationInfo = getRepresentationInfo(newQuality);
         // If the switch should occur immediately we need to replace existing stuff in the buffer
         if (e.reason && e.reason.forceReplace) {
             _prepareForForceReplacementQualitySwitch(representationInfo);
@@ -680,7 +683,35 @@ function StreamProcessor(config) {
 
         dashMetrics.pushPlayListTraceMetrics(new Date(), PlayListTrace.REPRESENTATION_SWITCH_STOP_REASON);
         dashMetrics.createPlaylistTraceMetrics(representationInfo.id, playbackController.getTime() * 1000, playbackController.getPlaybackRate());
+    }
 
+    function _prepareAdaptationSwitchQualityChange(e) {
+        qualityChangeInProgress = true;
+        scheduleController.clearScheduleTimer();
+        fragmentModel.abortRequests();
+        scheduleController.setSwitchTrack(true);
+
+        selectMediaInfoAfterQualitySwitch(e.newBitrateInfo.mediaInfo, e.newBitrateInfo)
+            .then(() => {
+                const representationInfo = _getRepresentationInfoByMediaInfoAndId(e.newBitrateInfo.mediaInfo, e.newBitrateInfo.representationId)
+                // If the switch should occur immediately we need to replace existing stuff in the buffer
+                if (e.reason && e.reason.forceReplace) {
+                    _prepareForForceReplacementQualitySwitch();
+                }
+
+                // If fast switch is enabled we check if we are supposed to replace existing stuff in the buffer
+                else if (settings.get().streaming.buffer.fastSwitchEnabled) {
+                    _prepareForFastQualitySwitch(representationInfo);
+                }
+
+                // Default quality switch. We append the new quality to the already buffered stuff
+                else {
+                    _prepareForDefaultQualitySwitch();
+                }
+
+                dashMetrics.pushPlayListTraceMetrics(new Date(), PlayListTrace.REPRESENTATION_SWITCH_STOP_REASON);
+                dashMetrics.createPlaylistTraceMetrics(representationInfo.id, playbackController.getTime() * 1000, playbackController.getPlaybackRate());
+            })
     }
 
     function _prepareForForceReplacementQualitySwitch(representationInfo) {
@@ -731,18 +762,19 @@ function StreamProcessor(config) {
         // if we switch up in quality and need to replace existing parts in the buffer we need to adjust the buffer target
         const time = playbackController.getTime();
         let safeBufferLevel = 1.5 * (!isNaN(representationInfo.fragmentDuration) ? representationInfo.fragmentDuration : 1);
-        const request = fragmentModel.getRequests({
+        const originalRequest = fragmentModel.getRequests({
             state: FragmentModel.FRAGMENT_MODEL_EXECUTED,
             time: time + safeBufferLevel,
             threshold: 0
         })[0];
 
-        if (request && !getIsTextTrack()) {
+        if (originalRequest && !getIsTextTrack()) {
             const bufferLevel = bufferController.getBufferLevel();
             const abandonmentState = abrController.getAbandonmentStateFor(streamInfo.id, type);
 
             // The quality we originally requested was lower than the new quality
-            if (request.quality < representationInfo.quality && bufferLevel >= safeBufferLevel && abandonmentState !== MetricsConstants.ABANDON_LOAD) {
+            const originalRepresentationInfo = _getRepresentationInfoByMediaInfoAndId(originalRequest.mediaInfo, originalRequest.representationId)
+            if (originalRepresentationInfo.bandwidth < representationInfo.bandwidth && bufferLevel >= safeBufferLevel && abandonmentState !== MetricsConstants.ABANDON_LOAD) {
                 bufferController.updateBufferTimestampOffset(representationInfo)
                     .then(() => {
                         // Abort the current request to avoid inconsistencies and in case a rule such as AbandonRequestRule has forced a quality switch. A quality switch can also be triggered manually by the application.
@@ -794,6 +826,14 @@ function StreamProcessor(config) {
                 pendingSwitchToRepresentationInfo = null;
                 qualityChangeInProgress = false;
             })
+    }
+
+    function _getRepresentationInfoByMediaInfoAndId(mediaInfo, repId) {
+        const voRepresentations = adapter.getVoRepresentations(mediaInfo)
+        const targetRepresentation = voRepresentations.filter((rep) => {
+            return rep.id === repId
+        })[0]
+        return adapter.convertRepresentationToRepresentationInfo(targetRepresentation);
     }
 
     /**
@@ -944,42 +984,70 @@ function StreamProcessor(config) {
     /**
      * Called once the StreamProcessor is initialized and when the track is switched. We only have one StreamProcessor per media type. So we need to adjust the mediaInfo once we switch/select a track.
      * @param {object} newMediaInfo
+     * @param newBitrateInfo
      */
     function selectMediaInfo(newMediaInfo) {
-        if (newMediaInfo !== mediaInfo && (!newMediaInfo || !mediaInfo || (newMediaInfo.type === mediaInfo.type))) {
-            mediaInfo = newMediaInfo;
-        }
+        return new Promise((resolve) => {
+            if (newMediaInfo !== mediaInfo && (!newMediaInfo || !mediaInfo || (newMediaInfo.type === mediaInfo.type))) {
+                mediaInfo = newMediaInfo;
+            }
 
-        const newRealAdaptation = adapter.getRealAdaptation(streamInfo, mediaInfo);
-        const voRepresentations = adapter.getVoRepresentations(mediaInfo);
+            adapter.setCurrentMediaInfo(streamInfo.id, mediaInfo.type, mediaInfo);
+            const newRealAdaptation = adapter.getRealAdaptation(streamInfo, mediaInfo);
+            const voRepresentations = adapter.getVoRepresentations(mediaInfo);
 
-        if (representationController) {
-            const realAdaptation = representationController.getData();
-            const maxQuality = abrController.getMaxAllowedIndexFor(type, streamInfo.id);
-            const minIdx = abrController.getMinAllowedIndexFor(type, streamInfo.id);
+            if (representationController) {
+                const realAdaptation = representationController.getData();
 
-            let quality,
-                averageThroughput;
-            let bitrate = null;
+                let bitrateInfo,
+                    averageThroughput;
+                let bitrate = null;
 
-            if ((realAdaptation === null || (realAdaptation.id !== newRealAdaptation.id)) && type !== Constants.TEXT) {
-                averageThroughput = abrController.getThroughputHistory().getAverageThroughput(type, isDynamic);
-                bitrate = averageThroughput || abrController.getInitialBitrateFor(type, streamInfo.id);
-                quality = abrController.getQualityForBitrate(mediaInfo, bitrate, streamInfo.id);
+                if ((realAdaptation === null || (realAdaptation.id !== newRealAdaptation.id)) && type !== Constants.TEXT) {
+                    averageThroughput = abrController.getThroughputHistory().getAverageThroughput(type, isDynamic);
+                    bitrate = averageThroughput || abrController.getInitialBitrateFor(type, streamInfo.id);
+                    bitrateInfo = abrController.getBitrateInfoByBitrate(mediaInfo, bitrate, false, true);
+                } else {
+                    bitrateInfo = abrController.getCurrentBitrateInfoFor(type, streamInfo.id);
+                }
+
+                representationController.updateData(newRealAdaptation, voRepresentations, type, mediaInfo, bitrateInfo)
+                    .then(() => {
+                        _onDataUpdateCompleted()
+                        resolve();
+                    })
+                    .catch((e) => {
+                        logger.error(e);
+                        resolve()
+                    })
             } else {
-                quality = abrController.getQualityFor(type, streamInfo.id);
+                return resolve();
             }
+        })
+    }
 
-            if (minIdx !== undefined && quality < minIdx) {
-                quality = minIdx;
+    function selectMediaInfoAfterQualitySwitch(newMediaInfo, newBitrateInfo) {
+        return new Promise((resolve) => {
+
+            mediaInfo = newMediaInfo;
+
+            adapter.setCurrentMediaInfo(streamInfo.id, mediaInfo.type, mediaInfo);
+            const newRealAdaptation = adapter.getRealAdaptation(streamInfo, mediaInfo);
+            const voRepresentations = adapter.getVoRepresentations(mediaInfo);
+
+            if (representationController) {
+                representationController.updateDataAfterAdaptationSetQualitySwitch(newRealAdaptation, voRepresentations, type, mediaInfo, newBitrateInfo)
+                    .then(() => {
+                        resolve();
+                    })
+                    .catch((e) => {
+                        logger.error(e);
+                        resolve()
+                    })
+            } else {
+                return resolve();
             }
-            if (quality > maxQuality) {
-                quality = maxQuality;
-            }
-            return representationController.updateData(newRealAdaptation, voRepresentations, type, mediaInfo.isFragmented, quality);
-        } else {
-            return Promise.resolve();
-        }
+        })
     }
 
     function addMediaInfo(newMediaInfo) {
@@ -996,6 +1064,10 @@ function StreamProcessor(config) {
         return mediaInfo;
     }
 
+    function getMediaInfoArr() {
+        return mediaInfoArr;
+    }
+
     function getMediaSource() {
         return bufferController.getMediaSource();
     }
@@ -1008,17 +1080,12 @@ function StreamProcessor(config) {
         return scheduleController;
     }
 
-    /**
-     * Get a specific voRepresentation. If quality parameter is defined, this function will return the voRepresentation for this quality.
-     * Otherwise, this function will return the current voRepresentation used by the representationController.
-     * @param {number} quality - quality index of the voRepresentaion expected.
-     */
-    function getRepresentationInfo(quality) {
+
+    function getRepresentationInfo(id = null) {
         let voRepresentation;
 
-        if (quality !== undefined) {
-            checkInteger(quality);
-            voRepresentation = representationController ? representationController.getRepresentationForQuality(quality) : null;
+        if (id !== null) {
+            voRepresentation = representationController ? representationController.getRepresentationForId(id) : null;
         } else {
             voRepresentation = representationController ? representationController.getCurrentRepresentation() : null;
         }
@@ -1042,7 +1109,7 @@ function StreamProcessor(config) {
         const representationInfo = getRepresentationInfo();
 
         const representation = representationController && representationInfo ?
-            representationController.getRepresentationForQuality(representationInfo.quality) : null;
+            representationController.getRepresentationForId(representationInfo.id) : null;
 
         return dashHandler.getNextSegmentRequestIdempotent(
             mediaInfo,
@@ -1056,9 +1123,9 @@ function StreamProcessor(config) {
         }
         const chunk = e.chunk;
         const bytes = chunk.bytes;
-        const quality = chunk.quality;
-        const currentRepresentation = getRepresentationInfo(quality);
-        const voRepresentation = representationController && currentRepresentation ? representationController.getRepresentationForQuality(currentRepresentation.quality) : null;
+        const id = chunk.representationId;
+        const currentRepresentation = getRepresentationInfo(id);
+        const voRepresentation = representationController && currentRepresentation ? representationController.getRepresentationForId(currentRepresentation.id) : null;
         if (currentRepresentation && voRepresentation) {
             voRepresentation.timescale = boxParser.getMediaTimescaleFromMoov(bytes);
         }
@@ -1069,8 +1136,9 @@ function StreamProcessor(config) {
 
         const bytes = chunk.bytes;
         const quality = chunk.quality;
-        const currentRepresentation = getRepresentationInfo(quality);
-        const voRepresentation = representationController && currentRepresentation ? representationController.getRepresentationForQuality(currentRepresentation.quality) : null;
+        const id = chunk.representationId;
+        const currentRepresentation = getRepresentationInfo(id);
+        const voRepresentation = representationController && currentRepresentation ? representationController.getRepresentationForId(currentRepresentation.id) : null;
 
         // If we switch tracks this event might be fired after the representations in the RepresentationController have been updated according to the new MediaInfo.
         // In this case there will be no currentRepresentation and voRepresentation matching the "old" quality
@@ -1366,6 +1434,7 @@ function StreamProcessor(config) {
         prepareTrackSwitch,
         prepareQualityChange,
         getMediaInfo,
+        getMediaInfoArr,
         getMediaSource,
         setMediaSource,
         getBuffer,

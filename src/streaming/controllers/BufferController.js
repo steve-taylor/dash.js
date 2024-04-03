@@ -168,8 +168,9 @@ function BufferController(config) {
      * @return {object}
      * @private
      */
-    function _getRepresentationInfo(quality) {
-        return adapter.convertRepresentationToRepresentationInfo(representationController.getRepresentationForQuality(quality));
+    function _getRepresentationInfo(id) {
+        const representation = representationController.getRepresentationForId(id)
+        return adapter.convertRepresentationToRepresentationInfo(representation);
     }
 
     /**
@@ -208,9 +209,10 @@ function BufferController(config) {
 
     function _initializeSinkForPrebuffering() {
         return new Promise((resolve, reject) => {
-            const requiredQuality = abrController.getQualityFor(type, streamInfo.id);
+            const brInfo = abrController.getCurrentBitrateInfoFor(type, streamInfo.id);
+            const repId = brInfo ? brInfo.representationId : null;
             sourceBufferSink = PreBufferSink(context).create(_onAppended.bind(this));
-            updateBufferTimestampOffset(_getRepresentationInfo(requiredQuality))
+            updateBufferTimestampOffset(_getRepresentationInfo(repId))
                 .then(() => {
                     resolve(sourceBufferSink);
                 })
@@ -222,15 +224,16 @@ function BufferController(config) {
 
     function _initializeSinkForMseBuffering(mediaInfo, oldBufferSinks) {
         return new Promise((resolve, reject) => {
-            const requiredQuality = abrController.getQualityFor(type, streamInfo.id);
+            const brInfo = abrController.getCurrentBitrateInfoFor(type, streamInfo.id);
+            const repId = brInfo ? brInfo.representationId : null;
             sourceBufferSink = SourceBufferSink(context).create({
                 mediaSource,
                 textController,
                 eventBus
             });
-            _initializeSink(mediaInfo, oldBufferSinks, requiredQuality)
+            _initializeSink(mediaInfo, oldBufferSinks, repId)
                 .then(() => {
-                    return updateBufferTimestampOffset(_getRepresentationInfo(requiredQuality));
+                    return updateBufferTimestampOffset(_getRepresentationInfo(repId));
                 })
                 .then(() => {
                     resolve(sourceBufferSink);
@@ -243,8 +246,8 @@ function BufferController(config) {
         })
     }
 
-    function _initializeSink(mediaInfo, oldBufferSinks, requiredQuality) {
-        const selectedRepresentation = _getRepresentationInfo(requiredQuality);
+    function _initializeSink(mediaInfo, oldBufferSinks, repId) {
+        const selectedRepresentation = _getRepresentationInfo(repId);
 
         if (oldBufferSinks && oldBufferSinks[type] && (type === Constants.VIDEO || type === Constants.AUDIO)) {
             return sourceBufferSink.initializeForStreamSwitch(mediaInfo, selectedRepresentation, oldBufferSinks[type]);
@@ -424,7 +427,8 @@ function BufferController(config) {
                 index: appendedBytesInfo.index,
                 bufferedRanges: ranges,
                 segmentType: appendedBytesInfo.segmentType,
-                mediaType: type
+                mediaType: type,
+                representationId: appendedBytesInfo.representationId
             });
         }
     }

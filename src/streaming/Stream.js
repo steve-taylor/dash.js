@@ -415,7 +415,6 @@ function Stream(config) {
         initialMediaInfo = mediaController.getCurrentTrackFor(type, streamInfo.id);
 
         if (initialMediaInfo) {
-            abrController.updateTopQualityIndex(initialMediaInfo);
             // In case of mixed fragmented and embedded text tracks, check if initial selected text track is not an embedded track
             return streamProcessor.selectMediaInfo((type !== Constants.TEXT || !initialMediaInfo.isEmbedded) ? initialMediaInfo : allMediaForType[0]);
         }
@@ -681,7 +680,7 @@ function Stream(config) {
      * @returns {Array}
      * @memberof Stream#
      */
-    function getBitrateListFor(type) {
+    function getBitrateInfoListFor(type) {
         checkConfig();
         if (type === Constants.IMAGE) {
             if (!thumbnailController) {
@@ -690,7 +689,7 @@ function Stream(config) {
             return thumbnailController.getBitrateList();
         }
         const mediaInfo = getMediaInfo(type);
-        return abrController.getBitrateList(mediaInfo);
+        return abrController.getBitrateInfoList(mediaInfo, true, false);
     }
 
     function onProtectionError(event) {
@@ -706,12 +705,8 @@ function Stream(config) {
         }
 
         hasFinishedBuffering = false;
-
         let mediaInfo = e.newMediaInfo;
         let manifest = manifestModel.getValue();
-
-        adapter.setCurrentMediaInfo(streamInfo.id, mediaInfo.type, mediaInfo);
-
         let processor = getProcessorForMediaInfo(mediaInfo);
         if (!processor) return;
 
@@ -728,10 +723,10 @@ function Stream(config) {
         } else {
             processor.selectMediaInfo(mediaInfo)
                 .then(() => {
-                    if (mediaInfo.type === Constants.VIDEO || mediaInfo.type === Constants.AUDIO) {
-                        abrController.updateTopQualityIndex(mediaInfo);
-                    }
                     processor.prepareTrackSwitch();
+                    eventBus.trigger(Events.TRACK_CHANGE_REQUESTED, {
+                        mediaInfo
+                    });
                 });
         }
     }
@@ -918,7 +913,6 @@ function Stream(config) {
                         const mInfo = allMediaForType[j];
                         streamProcessor.addMediaInfo(allMediaForType[j]);
                         if (adapter.areMediaInfosEqual(currentMediaInfo, mInfo)) {
-                            abrController.updateTopQualityIndex(mInfo);
                             promises.push(streamProcessor.selectMediaInfo(mInfo))
                         }
                     }
@@ -1057,9 +1051,10 @@ function Stream(config) {
         getHasAudioTrack,
         getHasVideoTrack,
         startPreloading,
+        getMediaInfo,
         initializeForTextWithMediaSource,
         getThumbnailController,
-        getBitrateListFor,
+        getBitrateInfoListFor,
         updateData,
         reset,
         getProcessors,

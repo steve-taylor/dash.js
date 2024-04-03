@@ -99,7 +99,7 @@ function ProtectionModel_21Jan2015(config) {
             for (let i = 0; i < numSessions; i++) {
                 session = sessions[i];
                 (function (s) {
-                    _closeKeySessionInternal(session)
+                    _closeKeySessionInternal(session);
                     done(s);
                 })(session);
             }
@@ -114,7 +114,7 @@ function ProtectionModel_21Jan2015(config) {
         for (let i = 0; i < sessions.length; i++) {
             session = sessions[i];
             if (!session.getUsable()) {
-                _closeKeySessionInternal(session)
+                _closeKeySessionInternal(session);
                 removeSession(session);
             }
         }
