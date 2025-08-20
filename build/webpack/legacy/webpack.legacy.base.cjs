@@ -6,7 +6,7 @@ const legacyConfig = merge(commonBaseConfig, {
     target: ['web', 'es5']
 });
 
-legacyConfig.module.rules[0].use.push({
+const commonRuleConfig = {
     loader: 'babel-loader',
     options: {
         sourceType: 'unambiguous',
@@ -19,7 +19,7 @@ legacyConfig.module.rules[0].use.push({
                         ie: '11',
                     },
                     corejs: '3.39.0',
-                }
+                },
             ],
         ],
         plugins: [
@@ -27,7 +27,17 @@ legacyConfig.module.rules[0].use.push({
             '@babel/plugin-transform-parameters'
         ],
     },
-},)
+};
+
+// Transpile source to ES5
+legacyConfig.module.rules[0].use.push(commonRuleConfig);
+
+// Transpile dependencies to ES5
+legacyConfig.module.rules.push({
+    test: /\.m?js$/,
+    include: path.resolve(__dirname, '../../../node_modules'),
+    use: commonRuleConfig,
+});
 
 const umdConfig = merge(legacyConfig, {
     output: {

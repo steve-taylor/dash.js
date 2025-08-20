@@ -37,7 +37,8 @@
     "test": "karma start test/unit/config/karma.unit.conf.cjs",
     "test-functional": "karma start test/functional/config/karma.functional.conf.cjs --configfile=local --streamsfile=smoke",
     "webpack-build-legacy": "webpack --config build/webpack/legacy/webpack.legacy.prod.cjs",
-    "webpack-build-modern": "webpack --config build/webpack/modern/webpack.modern.prod.cjs"
+    "webpack-build-modern": "webpack --config build/webpack/modern/webpack.modern.prod.cjs",
+    "postwebpack-build-legacy": "es-check es5 dist/legacy/umd/*.js"
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",
@@ -53,6 +54,7 @@
     "chai-spies": "^1.1.0",
     "clean-jsdoc-theme": "^4.2.17",
     "core-js": "^3.39.0",
+    "es-check": "^9.3.1",
     "eslint": "^9.13.0",
     "eslint-webpack-plugin": "^4.2.0",
     "globals": "^15.11.0",
