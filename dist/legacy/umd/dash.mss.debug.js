@@ -15279,8 +15279,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   CLEARKEY_KEYSTEM_STRING: 'org.w3.clearkey',
   WIDEVINE_KEYSTEM_STRING: 'com.widevine.alpha',
+  WIDEVINE_ESVM_KEYSYSTEM_STRING: 'com.widevine.alpha.esvm',
   PLAYREADY_KEYSTEM_STRING: 'com.microsoft.playready',
   PLAYREADY_RECOMMENDATION_KEYSTEM_STRING: 'com.microsoft.playready.recommendation',
+  PLAYREADY_ESVM_KEYSYSTEM_STRING: 'com.microsoft.playready.esvm',
   WIDEVINE_UUID: 'edef8ba9-79d6-4ace-a3c8-27dcd51d21ed',
   PLAYREADY_UUID: '9a04f079-9840-4286-ab92-e65be0885f95',
   CLEARKEY_UUID: 'e2719d58-a985-b3c9-781a-b030af78d30e',

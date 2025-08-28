@@ -32,7 +32,9 @@ import CommonEncryption from './../CommonEncryption.js';
 import KeySystemClearKey from './../drm/KeySystemClearKey.js';
 import KeySystemW3CClearKey from './../drm/KeySystemW3CClearKey.js';
 import KeySystemWidevine from './../drm/KeySystemWidevine.js';
+import KeySystemWidevineEsvm from '../drm/KeySystemWidevineEsvm.js';
 import KeySystemPlayReady from './../drm/KeySystemPlayReady.js';
+import KeySystemPlayReadyEsvm from './../drm/KeySystemPlayReadyEsvm.js';
 import DRMToday from './../servers/DRMToday.js';
 import PlayReady from './../servers/PlayReady.js';
 import Widevine from './../servers/Widevine.js';
@@ -87,8 +89,16 @@ function ProtectionKeyController() {
         keySystem = KeySystemPlayReady(context).getInstance({BASE64: BASE64, settings: settings});
         keySystems.push(keySystem);
 
+        // PlayReady + ESVM (for PS5)
+        keySystem = KeySystemPlayReadyEsvm(context).getInstance({BASE64: BASE64, settings: settings});
+        keySystems.push(keySystem);
+
         // Widevine
         keySystem = KeySystemWidevine(context).getInstance({BASE64: BASE64});
+        keySystems.push(keySystem);
+
+        // Widevine + ESVM (for PS5)
+        keySystem = KeySystemWidevineEsvm(context).getInstance({BASE64: BASE64});
         keySystems.push(keySystem);
 
         // ClearKey
@@ -320,9 +330,15 @@ function ProtectionKeyController() {
         let licenseServerData = null;
         if (protData && protData.hasOwnProperty('drmtoday')) {
             licenseServerData = DRMToday(context).getInstance({BASE64: BASE64});
-        } else if (keySystem.systemString === ProtectionConstants.WIDEVINE_KEYSTEM_STRING) {
+        } else if (
+            keySystem.systemString === ProtectionConstants.WIDEVINE_KEYSTEM_STRING ||
+            keySystem.systemString === ProtectionConstants.WIDEVINE_ESVM_KEYSYSTEM_STRING
+        ) {
             licenseServerData = Widevine(context).getInstance();
-        } else if (keySystem.systemString === ProtectionConstants.PLAYREADY_KEYSTEM_STRING) {
+        } else if (
+            keySystem.systemString === ProtectionConstants.PLAYREADY_KEYSTEM_STRING ||
+            keySystem.systemString === ProtectionConstants.PLAYREADY_ESVM_KEYSYSTEM_STRING
+        ) {
             licenseServerData = PlayReady(context).getInstance();
         } else if (keySystem.systemString === ProtectionConstants.CLEARKEY_KEYSTEM_STRING) {
             licenseServerData = ClearKey(context).getInstance();

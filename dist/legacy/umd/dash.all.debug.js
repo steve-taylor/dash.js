@@ -55141,7 +55141,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   getVersionString: function() { return /* binding */ getVersionString; }
 /* harmony export */ });
-var VERSION = '5.0.3';
+var VERSION = '5.0.3-ps5';
 function getVersionString() {
   return VERSION;
 }
@@ -73934,8 +73934,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   CLEARKEY_KEYSTEM_STRING: 'org.w3.clearkey',
   WIDEVINE_KEYSTEM_STRING: 'com.widevine.alpha',
+  WIDEVINE_ESVM_KEYSYSTEM_STRING: 'com.widevine.alpha.esvm',
   PLAYREADY_KEYSTEM_STRING: 'com.microsoft.playready',
   PLAYREADY_RECOMMENDATION_KEYSTEM_STRING: 'com.microsoft.playready.recommendation',
+  PLAYREADY_ESVM_KEYSYSTEM_STRING: 'com.microsoft.playready.esvm',
   WIDEVINE_UUID: 'edef8ba9-79d6-4ace-a3c8-27dcd51d21ed',
   PLAYREADY_UUID: '9a04f079-9840-4286-ab92-e65be0885f95',
   CLEARKEY_UUID: 'e2719d58-a985-b3c9-781a-b030af78d30e',
@@ -92265,55 +92267,57 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_es_function_name_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! core-js/modules/es.function.name.js */ "./node_modules/core-js/modules/es.function.name.js");
 /* harmony import */ var core_js_modules_es_json_stringify_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! core-js/modules/es.json.stringify.js */ "./node_modules/core-js/modules/es.json.stringify.js");
 /* harmony import */ var core_js_modules_es_map_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! core-js/modules/es.map.js */ "./node_modules/core-js/modules/es.map.js");
-/* harmony import */ var core_js_modules_es_object_keys_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! core-js/modules/es.object.keys.js */ "./node_modules/core-js/modules/es.object.keys.js");
-/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
-/* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! core-js/modules/es.promise.js */ "./node_modules/core-js/modules/es.promise.js");
-/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! core-js/modules/es.string.includes.js */ "./node_modules/core-js/modules/es.string.includes.js");
-/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! core-js/modules/es.string.iterator.js */ "./node_modules/core-js/modules/es.string.iterator.js");
-/* harmony import */ var core_js_modules_es_typed_array_uint8_array_js__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! core-js/modules/es.typed-array.uint8-array.js */ "./node_modules/core-js/modules/es.typed-array.uint8-array.js");
-/* harmony import */ var core_js_modules_es_typed_array_at_js__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! core-js/modules/es.typed-array.at.js */ "./node_modules/core-js/modules/es.typed-array.at.js");
-/* harmony import */ var core_js_modules_es_typed_array_copy_within_js__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! core-js/modules/es.typed-array.copy-within.js */ "./node_modules/core-js/modules/es.typed-array.copy-within.js");
-/* harmony import */ var core_js_modules_es_typed_array_every_js__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! core-js/modules/es.typed-array.every.js */ "./node_modules/core-js/modules/es.typed-array.every.js");
-/* harmony import */ var core_js_modules_es_typed_array_fill_js__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! core-js/modules/es.typed-array.fill.js */ "./node_modules/core-js/modules/es.typed-array.fill.js");
-/* harmony import */ var core_js_modules_es_typed_array_filter_js__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! core-js/modules/es.typed-array.filter.js */ "./node_modules/core-js/modules/es.typed-array.filter.js");
-/* harmony import */ var core_js_modules_es_typed_array_find_js__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! core-js/modules/es.typed-array.find.js */ "./node_modules/core-js/modules/es.typed-array.find.js");
-/* harmony import */ var core_js_modules_es_typed_array_find_index_js__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! core-js/modules/es.typed-array.find-index.js */ "./node_modules/core-js/modules/es.typed-array.find-index.js");
-/* harmony import */ var core_js_modules_es_typed_array_find_last_js__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! core-js/modules/es.typed-array.find-last.js */ "./node_modules/core-js/modules/es.typed-array.find-last.js");
-/* harmony import */ var core_js_modules_es_typed_array_find_last_index_js__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! core-js/modules/es.typed-array.find-last-index.js */ "./node_modules/core-js/modules/es.typed-array.find-last-index.js");
-/* harmony import */ var core_js_modules_es_typed_array_for_each_js__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! core-js/modules/es.typed-array.for-each.js */ "./node_modules/core-js/modules/es.typed-array.for-each.js");
-/* harmony import */ var core_js_modules_es_typed_array_includes_js__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! core-js/modules/es.typed-array.includes.js */ "./node_modules/core-js/modules/es.typed-array.includes.js");
-/* harmony import */ var core_js_modules_es_typed_array_index_of_js__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! core-js/modules/es.typed-array.index-of.js */ "./node_modules/core-js/modules/es.typed-array.index-of.js");
-/* harmony import */ var core_js_modules_es_typed_array_iterator_js__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! core-js/modules/es.typed-array.iterator.js */ "./node_modules/core-js/modules/es.typed-array.iterator.js");
-/* harmony import */ var core_js_modules_es_typed_array_join_js__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! core-js/modules/es.typed-array.join.js */ "./node_modules/core-js/modules/es.typed-array.join.js");
-/* harmony import */ var core_js_modules_es_typed_array_last_index_of_js__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! core-js/modules/es.typed-array.last-index-of.js */ "./node_modules/core-js/modules/es.typed-array.last-index-of.js");
-/* harmony import */ var core_js_modules_es_typed_array_map_js__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! core-js/modules/es.typed-array.map.js */ "./node_modules/core-js/modules/es.typed-array.map.js");
-/* harmony import */ var core_js_modules_es_typed_array_reduce_js__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! core-js/modules/es.typed-array.reduce.js */ "./node_modules/core-js/modules/es.typed-array.reduce.js");
-/* harmony import */ var core_js_modules_es_typed_array_reduce_right_js__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! core-js/modules/es.typed-array.reduce-right.js */ "./node_modules/core-js/modules/es.typed-array.reduce-right.js");
-/* harmony import */ var core_js_modules_es_typed_array_reverse_js__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! core-js/modules/es.typed-array.reverse.js */ "./node_modules/core-js/modules/es.typed-array.reverse.js");
-/* harmony import */ var core_js_modules_es_typed_array_set_js__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! core-js/modules/es.typed-array.set.js */ "./node_modules/core-js/modules/es.typed-array.set.js");
-/* harmony import */ var core_js_modules_es_typed_array_slice_js__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! core-js/modules/es.typed-array.slice.js */ "./node_modules/core-js/modules/es.typed-array.slice.js");
-/* harmony import */ var core_js_modules_es_typed_array_some_js__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! core-js/modules/es.typed-array.some.js */ "./node_modules/core-js/modules/es.typed-array.some.js");
-/* harmony import */ var core_js_modules_es_typed_array_sort_js__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! core-js/modules/es.typed-array.sort.js */ "./node_modules/core-js/modules/es.typed-array.sort.js");
-/* harmony import */ var core_js_modules_es_typed_array_subarray_js__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! core-js/modules/es.typed-array.subarray.js */ "./node_modules/core-js/modules/es.typed-array.subarray.js");
-/* harmony import */ var core_js_modules_es_typed_array_to_locale_string_js__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! core-js/modules/es.typed-array.to-locale-string.js */ "./node_modules/core-js/modules/es.typed-array.to-locale-string.js");
-/* harmony import */ var core_js_modules_es_typed_array_to_reversed_js__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! core-js/modules/es.typed-array.to-reversed.js */ "./node_modules/core-js/modules/es.typed-array.to-reversed.js");
-/* harmony import */ var core_js_modules_es_typed_array_to_sorted_js__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! core-js/modules/es.typed-array.to-sorted.js */ "./node_modules/core-js/modules/es.typed-array.to-sorted.js");
-/* harmony import */ var core_js_modules_es_typed_array_to_string_js__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! core-js/modules/es.typed-array.to-string.js */ "./node_modules/core-js/modules/es.typed-array.to-string.js");
-/* harmony import */ var core_js_modules_es_typed_array_with_js__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__(/*! core-js/modules/es.typed-array.with.js */ "./node_modules/core-js/modules/es.typed-array.with.js");
-/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
-/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__(/*! core-js/modules/web.dom-collections.iterator.js */ "./node_modules/core-js/modules/web.dom-collections.iterator.js");
-/* harmony import */ var _CommonEncryption_js__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(/*! ../CommonEncryption.js */ "./src/streaming/protection/CommonEncryption.js");
-/* harmony import */ var _vo_MediaCapability_js__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(/*! ../vo/MediaCapability.js */ "./src/streaming/protection/vo/MediaCapability.js");
-/* harmony import */ var _vo_KeySystemConfiguration_js__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(/*! ../vo/KeySystemConfiguration.js */ "./src/streaming/protection/vo/KeySystemConfiguration.js");
-/* harmony import */ var _errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_56__ = __webpack_require__(/*! ../errors/ProtectionErrors.js */ "./src/streaming/protection/errors/ProtectionErrors.js");
-/* harmony import */ var _vo_DashJSError_js__WEBPACK_IMPORTED_MODULE_57__ = __webpack_require__(/*! ../../vo/DashJSError.js */ "./src/streaming/vo/DashJSError.js");
-/* harmony import */ var _vo_LicenseRequest_js__WEBPACK_IMPORTED_MODULE_58__ = __webpack_require__(/*! ../vo/LicenseRequest.js */ "./src/streaming/protection/vo/LicenseRequest.js");
-/* harmony import */ var _vo_LicenseResponse_js__WEBPACK_IMPORTED_MODULE_59__ = __webpack_require__(/*! ../vo/LicenseResponse.js */ "./src/streaming/protection/vo/LicenseResponse.js");
-/* harmony import */ var _vo_metrics_HTTPRequest_js__WEBPACK_IMPORTED_MODULE_60__ = __webpack_require__(/*! ../../vo/metrics/HTTPRequest.js */ "./src/streaming/vo/metrics/HTTPRequest.js");
-/* harmony import */ var _core_Utils_js__WEBPACK_IMPORTED_MODULE_61__ = __webpack_require__(/*! ../../../core/Utils.js */ "./src/core/Utils.js");
-/* harmony import */ var _constants_Constants_js__WEBPACK_IMPORTED_MODULE_62__ = __webpack_require__(/*! ../../constants/Constants.js */ "./src/streaming/constants/Constants.js");
-/* harmony import */ var _core_FactoryMaker_js__WEBPACK_IMPORTED_MODULE_63__ = __webpack_require__(/*! ../../../core/FactoryMaker.js */ "./src/core/FactoryMaker.js");
-/* harmony import */ var _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_64__ = __webpack_require__(/*! ../../constants/ProtectionConstants.js */ "./src/streaming/constants/ProtectionConstants.js");
+/* harmony import */ var core_js_modules_es_number_max_safe_integer_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! core-js/modules/es.number.max-safe-integer.js */ "./node_modules/core-js/modules/es.number.max-safe-integer.js");
+/* harmony import */ var core_js_modules_es_object_keys_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! core-js/modules/es.object.keys.js */ "./node_modules/core-js/modules/es.object.keys.js");
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! core-js/modules/es.promise.js */ "./node_modules/core-js/modules/es.promise.js");
+/* harmony import */ var core_js_modules_es_string_includes_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! core-js/modules/es.string.includes.js */ "./node_modules/core-js/modules/es.string.includes.js");
+/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! core-js/modules/es.string.iterator.js */ "./node_modules/core-js/modules/es.string.iterator.js");
+/* harmony import */ var core_js_modules_es_typed_array_uint8_array_js__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! core-js/modules/es.typed-array.uint8-array.js */ "./node_modules/core-js/modules/es.typed-array.uint8-array.js");
+/* harmony import */ var core_js_modules_es_typed_array_at_js__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! core-js/modules/es.typed-array.at.js */ "./node_modules/core-js/modules/es.typed-array.at.js");
+/* harmony import */ var core_js_modules_es_typed_array_copy_within_js__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! core-js/modules/es.typed-array.copy-within.js */ "./node_modules/core-js/modules/es.typed-array.copy-within.js");
+/* harmony import */ var core_js_modules_es_typed_array_every_js__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! core-js/modules/es.typed-array.every.js */ "./node_modules/core-js/modules/es.typed-array.every.js");
+/* harmony import */ var core_js_modules_es_typed_array_fill_js__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! core-js/modules/es.typed-array.fill.js */ "./node_modules/core-js/modules/es.typed-array.fill.js");
+/* harmony import */ var core_js_modules_es_typed_array_filter_js__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! core-js/modules/es.typed-array.filter.js */ "./node_modules/core-js/modules/es.typed-array.filter.js");
+/* harmony import */ var core_js_modules_es_typed_array_find_js__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! core-js/modules/es.typed-array.find.js */ "./node_modules/core-js/modules/es.typed-array.find.js");
+/* harmony import */ var core_js_modules_es_typed_array_find_index_js__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! core-js/modules/es.typed-array.find-index.js */ "./node_modules/core-js/modules/es.typed-array.find-index.js");
+/* harmony import */ var core_js_modules_es_typed_array_find_last_js__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! core-js/modules/es.typed-array.find-last.js */ "./node_modules/core-js/modules/es.typed-array.find-last.js");
+/* harmony import */ var core_js_modules_es_typed_array_find_last_index_js__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! core-js/modules/es.typed-array.find-last-index.js */ "./node_modules/core-js/modules/es.typed-array.find-last-index.js");
+/* harmony import */ var core_js_modules_es_typed_array_for_each_js__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! core-js/modules/es.typed-array.for-each.js */ "./node_modules/core-js/modules/es.typed-array.for-each.js");
+/* harmony import */ var core_js_modules_es_typed_array_includes_js__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! core-js/modules/es.typed-array.includes.js */ "./node_modules/core-js/modules/es.typed-array.includes.js");
+/* harmony import */ var core_js_modules_es_typed_array_index_of_js__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! core-js/modules/es.typed-array.index-of.js */ "./node_modules/core-js/modules/es.typed-array.index-of.js");
+/* harmony import */ var core_js_modules_es_typed_array_iterator_js__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! core-js/modules/es.typed-array.iterator.js */ "./node_modules/core-js/modules/es.typed-array.iterator.js");
+/* harmony import */ var core_js_modules_es_typed_array_join_js__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! core-js/modules/es.typed-array.join.js */ "./node_modules/core-js/modules/es.typed-array.join.js");
+/* harmony import */ var core_js_modules_es_typed_array_last_index_of_js__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! core-js/modules/es.typed-array.last-index-of.js */ "./node_modules/core-js/modules/es.typed-array.last-index-of.js");
+/* harmony import */ var core_js_modules_es_typed_array_map_js__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! core-js/modules/es.typed-array.map.js */ "./node_modules/core-js/modules/es.typed-array.map.js");
+/* harmony import */ var core_js_modules_es_typed_array_reduce_js__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! core-js/modules/es.typed-array.reduce.js */ "./node_modules/core-js/modules/es.typed-array.reduce.js");
+/* harmony import */ var core_js_modules_es_typed_array_reduce_right_js__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! core-js/modules/es.typed-array.reduce-right.js */ "./node_modules/core-js/modules/es.typed-array.reduce-right.js");
+/* harmony import */ var core_js_modules_es_typed_array_reverse_js__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! core-js/modules/es.typed-array.reverse.js */ "./node_modules/core-js/modules/es.typed-array.reverse.js");
+/* harmony import */ var core_js_modules_es_typed_array_set_js__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! core-js/modules/es.typed-array.set.js */ "./node_modules/core-js/modules/es.typed-array.set.js");
+/* harmony import */ var core_js_modules_es_typed_array_slice_js__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! core-js/modules/es.typed-array.slice.js */ "./node_modules/core-js/modules/es.typed-array.slice.js");
+/* harmony import */ var core_js_modules_es_typed_array_some_js__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! core-js/modules/es.typed-array.some.js */ "./node_modules/core-js/modules/es.typed-array.some.js");
+/* harmony import */ var core_js_modules_es_typed_array_sort_js__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! core-js/modules/es.typed-array.sort.js */ "./node_modules/core-js/modules/es.typed-array.sort.js");
+/* harmony import */ var core_js_modules_es_typed_array_subarray_js__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! core-js/modules/es.typed-array.subarray.js */ "./node_modules/core-js/modules/es.typed-array.subarray.js");
+/* harmony import */ var core_js_modules_es_typed_array_to_locale_string_js__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! core-js/modules/es.typed-array.to-locale-string.js */ "./node_modules/core-js/modules/es.typed-array.to-locale-string.js");
+/* harmony import */ var core_js_modules_es_typed_array_to_reversed_js__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! core-js/modules/es.typed-array.to-reversed.js */ "./node_modules/core-js/modules/es.typed-array.to-reversed.js");
+/* harmony import */ var core_js_modules_es_typed_array_to_sorted_js__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! core-js/modules/es.typed-array.to-sorted.js */ "./node_modules/core-js/modules/es.typed-array.to-sorted.js");
+/* harmony import */ var core_js_modules_es_typed_array_to_string_js__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__(/*! core-js/modules/es.typed-array.to-string.js */ "./node_modules/core-js/modules/es.typed-array.to-string.js");
+/* harmony import */ var core_js_modules_es_typed_array_with_js__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__(/*! core-js/modules/es.typed-array.with.js */ "./node_modules/core-js/modules/es.typed-array.with.js");
+/* harmony import */ var core_js_modules_web_dom_collections_for_each_js__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(/*! core-js/modules/web.dom-collections.iterator.js */ "./node_modules/core-js/modules/web.dom-collections.iterator.js");
+/* harmony import */ var _CommonEncryption_js__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(/*! ../CommonEncryption.js */ "./src/streaming/protection/CommonEncryption.js");
+/* harmony import */ var _vo_MediaCapability_js__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(/*! ../vo/MediaCapability.js */ "./src/streaming/protection/vo/MediaCapability.js");
+/* harmony import */ var _vo_KeySystemConfiguration_js__WEBPACK_IMPORTED_MODULE_56__ = __webpack_require__(/*! ../vo/KeySystemConfiguration.js */ "./src/streaming/protection/vo/KeySystemConfiguration.js");
+/* harmony import */ var _errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_57__ = __webpack_require__(/*! ../errors/ProtectionErrors.js */ "./src/streaming/protection/errors/ProtectionErrors.js");
+/* harmony import */ var _vo_DashJSError_js__WEBPACK_IMPORTED_MODULE_58__ = __webpack_require__(/*! ../../vo/DashJSError.js */ "./src/streaming/vo/DashJSError.js");
+/* harmony import */ var _vo_LicenseRequest_js__WEBPACK_IMPORTED_MODULE_59__ = __webpack_require__(/*! ../vo/LicenseRequest.js */ "./src/streaming/protection/vo/LicenseRequest.js");
+/* harmony import */ var _vo_LicenseResponse_js__WEBPACK_IMPORTED_MODULE_60__ = __webpack_require__(/*! ../vo/LicenseResponse.js */ "./src/streaming/protection/vo/LicenseResponse.js");
+/* harmony import */ var _vo_metrics_HTTPRequest_js__WEBPACK_IMPORTED_MODULE_61__ = __webpack_require__(/*! ../../vo/metrics/HTTPRequest.js */ "./src/streaming/vo/metrics/HTTPRequest.js");
+/* harmony import */ var _core_Utils_js__WEBPACK_IMPORTED_MODULE_62__ = __webpack_require__(/*! ../../../core/Utils.js */ "./src/core/Utils.js");
+/* harmony import */ var _constants_Constants_js__WEBPACK_IMPORTED_MODULE_63__ = __webpack_require__(/*! ../../constants/Constants.js */ "./src/streaming/constants/Constants.js");
+/* harmony import */ var _core_FactoryMaker_js__WEBPACK_IMPORTED_MODULE_64__ = __webpack_require__(/*! ../../../core/FactoryMaker.js */ "./src/core/FactoryMaker.js");
+/* harmony import */ var _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_65__ = __webpack_require__(/*! ../../constants/ProtectionConstants.js */ "./src/streaming/constants/ProtectionConstants.js");
+
 
 
 
@@ -92606,14 +92610,24 @@ function ProtectionController(config) {
     if (!fromManifest) {
       eventBus.trigger(events.KEY_SYSTEM_SELECTED, {
         data: null,
-        error: new _vo_DashJSError_js__WEBPACK_IMPORTED_MODULE_57__["default"](_errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_56__["default"].KEY_SYSTEM_ACCESS_DENIED_ERROR_CODE, _errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_56__["default"].KEY_SYSTEM_ACCESS_DENIED_ERROR_MESSAGE + 'Error selecting key system! -- ' + event.error)
+        error: new _vo_DashJSError_js__WEBPACK_IMPORTED_MODULE_58__["default"](_errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_57__["default"].KEY_SYSTEM_ACCESS_DENIED_ERROR_CODE, _errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_57__["default"].KEY_SYSTEM_ACCESS_DENIED_ERROR_MESSAGE + 'Error selecting key system! -- ' + event.error)
       });
     }
   }
+
+  /**
+   * Prioritise key systems first by whether they're in the provided protectionData, then by their priority within protectionData.
+   *
+   * Key systems not in protectionData or without a specified priority will be added to the end of the list and will retain their original relative to each other.
+   *
+   * @param {Array} supportedKeySystems - list of supported key systems to sort
+   * @returns {Array} the sorted key systems
+   */
   function _sortKeySystemsByPriority(supportedKeySystems) {
     return supportedKeySystems.sort(function (ksA, ksB) {
-      var indexA = applicationProvidedProtectionData && applicationProvidedProtectionData[ksA.ks.systemString] && applicationProvidedProtectionData[ksA.ks.systemString].priority >= 0 ? applicationProvidedProtectionData[ksA.ks.systemString].priority : supportedKeySystems.length;
-      var indexB = applicationProvidedProtectionData && applicationProvidedProtectionData[ksB.ks.systemString] && applicationProvidedProtectionData[ksB.ks.systemString].priority >= 0 ? applicationProvidedProtectionData[ksB.ks.systemString].priority : supportedKeySystems.length;
+      var _applicationProvidedP, _applicationProvidedP2, _applicationProvidedP3, _applicationProvidedP4;
+      var indexA = (_applicationProvidedP = (_applicationProvidedP2 = applicationProvidedProtectionData) === null || _applicationProvidedP2 === void 0 || (_applicationProvidedP2 = _applicationProvidedP2[ksA.ks.systemString]) === null || _applicationProvidedP2 === void 0 ? void 0 : _applicationProvidedP2.priority) !== null && _applicationProvidedP !== void 0 ? _applicationProvidedP : Number.MAX_SAFE_INTEGER;
+      var indexB = (_applicationProvidedP3 = (_applicationProvidedP4 = applicationProvidedProtectionData) === null || _applicationProvidedP4 === void 0 || (_applicationProvidedP4 = _applicationProvidedP4[ksB.ks.systemString]) === null || _applicationProvidedP4 === void 0 ? void 0 : _applicationProvidedP4.priority) !== null && _applicationProvidedP3 !== void 0 ? _applicationProvidedP3 : Number.MAX_SAFE_INTEGER;
       return indexA - indexB;
     });
   }
@@ -92640,7 +92654,7 @@ function ProtectionController(config) {
     var protData = keySystemData.protData;
     var audioCapabilities = [];
     var videoCapabilities = [];
-    var initDataTypes = protData && protData.initDataTypes && protData.initDataTypes.length > 0 ? protData.initDataTypes : [_constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_64__["default"].INITIALIZATION_DATA_TYPE_CENC];
+    var initDataTypes = protData && protData.initDataTypes && protData.initDataTypes.length > 0 ? protData.initDataTypes : [_constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_65__["default"].INITIALIZATION_DATA_TYPE_CENC];
     var audioRobustness = protData && protData.audioRobustness && protData.audioRobustness.length > 0 ? protData.audioRobustness : robustnessLevel;
     var videoRobustness = protData && protData.videoRobustness && protData.videoRobustness.length > 0 ? protData.videoRobustness : robustnessLevel;
     var ksSessionType = keySystemData.sessionType;
@@ -92648,12 +92662,12 @@ function ProtectionController(config) {
     var persistentState = protData && protData.persistentState ? protData.persistentState : ksSessionType === 'temporary' ? 'optional' : 'required';
     mediaInfoArr.forEach(function (media) {
       if (media.type === constants.AUDIO) {
-        audioCapabilities.push(new _vo_MediaCapability_js__WEBPACK_IMPORTED_MODULE_54__["default"](media.codec, audioRobustness));
+        audioCapabilities.push(new _vo_MediaCapability_js__WEBPACK_IMPORTED_MODULE_55__["default"](media.codec, audioRobustness));
       } else if (media.type === constants.VIDEO) {
-        videoCapabilities.push(new _vo_MediaCapability_js__WEBPACK_IMPORTED_MODULE_54__["default"](media.codec, videoRobustness));
+        videoCapabilities.push(new _vo_MediaCapability_js__WEBPACK_IMPORTED_MODULE_55__["default"](media.codec, videoRobustness));
       }
     });
-    return new _vo_KeySystemConfiguration_js__WEBPACK_IMPORTED_MODULE_55__["default"](audioCapabilities, videoCapabilities, distinctiveIdentifier, persistentState, [ksSessionType], initDataTypes);
+    return new _vo_KeySystemConfiguration_js__WEBPACK_IMPORTED_MODULE_56__["default"](audioCapabilities, videoCapabilities, distinctiveIdentifier, persistentState, [ksSessionType], initDataTypes);
   }
 
   /**
@@ -92718,7 +92732,7 @@ function ProtectionController(config) {
     if (keySystemMetadata && _doesSessionForKeyIdExists(keySystemMetadata.keyId)) {
       return;
     }
-    var initDataForKS = _CommonEncryption_js__WEBPACK_IMPORTED_MODULE_53__["default"].getPSSHForKeySystem(selectedKeySystem, keySystemMetadata ? keySystemMetadata.initData : null);
+    var initDataForKS = _CommonEncryption_js__WEBPACK_IMPORTED_MODULE_54__["default"].getPSSHForKeySystem(selectedKeySystem, keySystemMetadata ? keySystemMetadata.initData : null);
     if (initDataForKS) {
       // Check for duplicate initData
       if (_isInitDataDuplicate(initDataForKS)) {
@@ -92730,7 +92744,7 @@ function ProtectionController(config) {
       } catch (error) {
         eventBus.trigger(events.KEY_SESSION_CREATED, {
           data: null,
-          error: new _vo_DashJSError_js__WEBPACK_IMPORTED_MODULE_57__["default"](_errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_56__["default"].KEY_SESSION_CREATED_ERROR_CODE, _errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_56__["default"].KEY_SESSION_CREATED_ERROR_MESSAGE + error.message)
+          error: new _vo_DashJSError_js__WEBPACK_IMPORTED_MODULE_58__["default"](_errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_57__["default"].KEY_SESSION_CREATED_ERROR_CODE, _errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_57__["default"].KEY_SESSION_CREATED_ERROR_MESSAGE + error.message)
         });
       }
     } else if (keySystemMetadata && keySystemMetadata.initData) {
@@ -92738,7 +92752,7 @@ function ProtectionController(config) {
     } else {
       eventBus.trigger(events.KEY_SESSION_CREATED, {
         data: null,
-        error: new _vo_DashJSError_js__WEBPACK_IMPORTED_MODULE_57__["default"](_errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_56__["default"].KEY_SESSION_CREATED_ERROR_CODE, _errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_56__["default"].KEY_SESSION_CREATED_ERROR_MESSAGE + 'Selected key system is ' + (selectedKeySystem ? selectedKeySystem.systemString : null) + '.  needkey/encrypted event contains no initData corresponding to that key system!')
+        error: new _vo_DashJSError_js__WEBPACK_IMPORTED_MODULE_58__["default"](_errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_57__["default"].KEY_SESSION_CREATED_ERROR_CODE, _errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_57__["default"].KEY_SESSION_CREATED_ERROR_MESSAGE + 'Selected key system is ' + (selectedKeySystem ? selectedKeySystem.systemString : null) + '.  needkey/encrypted event contains no initData corresponding to that key system!')
       });
     }
   }
@@ -92999,7 +93013,7 @@ function ProtectionController(config) {
     eventBus.trigger(events.KEY_MESSAGE, {
       data: keyMessage
     });
-    var messageType = keyMessage.messageType ? keyMessage.messageType : _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_64__["default"].MEDIA_KEY_MESSAGE_TYPES.LICENSE_REQUEST;
+    var messageType = keyMessage.messageType ? keyMessage.messageType : _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_65__["default"].MEDIA_KEY_MESSAGE_TYPES.LICENSE_REQUEST;
     var message = keyMessage.message;
     var sessionToken = keyMessage.sessionToken;
     var protData = _getProtDataForKeySystem(selectedKeySystem);
@@ -93011,7 +93025,7 @@ function ProtectionController(config) {
 
     // Ensure message from CDM is not empty
     if (!message || message.byteLength === 0) {
-      _sendLicenseRequestCompleteEvent(eventData, new _vo_DashJSError_js__WEBPACK_IMPORTED_MODULE_57__["default"](_errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_56__["default"].MEDIA_KEY_MESSAGE_NO_CHALLENGE_ERROR_CODE, _errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_56__["default"].MEDIA_KEY_MESSAGE_NO_CHALLENGE_ERROR_MESSAGE));
+      _sendLicenseRequestCompleteEvent(eventData, new _vo_DashJSError_js__WEBPACK_IMPORTED_MODULE_58__["default"](_errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_57__["default"].MEDIA_KEY_MESSAGE_NO_CHALLENGE_ERROR_CODE, _errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_57__["default"].MEDIA_KEY_MESSAGE_NO_CHALLENGE_ERROR_MESSAGE));
       return;
     }
 
@@ -93060,7 +93074,7 @@ function ProtectionController(config) {
    */
   function _issueLicenseRequest(keyMessage, licenseServerData, protData) {
     var sessionToken = keyMessage.sessionToken;
-    var messageType = keyMessage.messageType ? keyMessage.messageType : _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_64__["default"].MEDIA_KEY_MESSAGE_TYPES.LICENSE_REQUEST;
+    var messageType = keyMessage.messageType ? keyMessage.messageType : _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_65__["default"].MEDIA_KEY_MESSAGE_TYPES.LICENSE_REQUEST;
     var eventData = {
       sessionToken: sessionToken,
       messageType: messageType
@@ -93072,7 +93086,7 @@ function ProtectionController(config) {
 
     // Ensure valid license server URL
     if (!url) {
-      _sendLicenseRequestCompleteEvent(eventData, new _vo_DashJSError_js__WEBPACK_IMPORTED_MODULE_57__["default"](_errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_56__["default"].MEDIA_KEY_MESSAGE_NO_LICENSE_SERVER_URL_ERROR_CODE, _errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_56__["default"].MEDIA_KEY_MESSAGE_NO_LICENSE_SERVER_URL_ERROR_MESSAGE));
+      _sendLicenseRequestCompleteEvent(eventData, new _vo_DashJSError_js__WEBPACK_IMPORTED_MODULE_58__["default"](_errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_57__["default"].MEDIA_KEY_MESSAGE_NO_LICENSE_SERVER_URL_ERROR_CODE, _errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_57__["default"].MEDIA_KEY_MESSAGE_NO_LICENSE_SERVER_URL_ERROR_MESSAGE));
       return;
     }
 
@@ -93100,8 +93114,8 @@ function ProtectionController(config) {
         return;
       }
       if (xhr.status >= 200 && xhr.status <= 299) {
-        var responseHeaders = _core_Utils_js__WEBPACK_IMPORTED_MODULE_61__["default"].parseHttpHeaders(xhr.getAllResponseHeaders ? xhr.getAllResponseHeaders() : null);
-        var licenseResponse = new _vo_LicenseResponse_js__WEBPACK_IMPORTED_MODULE_59__["default"](xhr.responseURL, responseHeaders, xhr.response);
+        var responseHeaders = _core_Utils_js__WEBPACK_IMPORTED_MODULE_62__["default"].parseHttpHeaders(xhr.getAllResponseHeaders ? xhr.getAllResponseHeaders() : null);
+        var licenseResponse = new _vo_LicenseResponse_js__WEBPACK_IMPORTED_MODULE_60__["default"](xhr.responseURL, responseHeaders, xhr.response);
         var licenseResponseFilters = customParametersModel.getLicenseResponseFilters();
         _applyFilters(licenseResponseFilters, licenseResponse).then(function () {
           var licenseMessage = licenseServerData.getLicenseMessage(licenseResponse.data, keySystemString, messageType);
@@ -93117,18 +93131,18 @@ function ProtectionController(config) {
       }
     };
     var onAbort = function onAbort(xhr) {
-      _sendLicenseRequestCompleteEvent(eventData, new _vo_DashJSError_js__WEBPACK_IMPORTED_MODULE_57__["default"](_errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_56__["default"].MEDIA_KEY_MESSAGE_LICENSER_ERROR_CODE, _errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_56__["default"].MEDIA_KEY_MESSAGE_LICENSER_ERROR_MESSAGE + keySystemString + ' update, XHR aborted. status is "' + xhr.statusText + '" (' + xhr.status + '), readyState is ' + xhr.readyState));
+      _sendLicenseRequestCompleteEvent(eventData, new _vo_DashJSError_js__WEBPACK_IMPORTED_MODULE_58__["default"](_errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_57__["default"].MEDIA_KEY_MESSAGE_LICENSER_ERROR_CODE, _errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_57__["default"].MEDIA_KEY_MESSAGE_LICENSER_ERROR_MESSAGE + keySystemString + ' update, XHR aborted. status is "' + xhr.statusText + '" (' + xhr.status + '), readyState is ' + xhr.readyState));
     };
     var onError = function onError(xhr) {
-      _sendLicenseRequestCompleteEvent(eventData, new _vo_DashJSError_js__WEBPACK_IMPORTED_MODULE_57__["default"](_errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_56__["default"].MEDIA_KEY_MESSAGE_LICENSER_ERROR_CODE, _errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_56__["default"].MEDIA_KEY_MESSAGE_LICENSER_ERROR_MESSAGE + keySystemString + ' update, XHR error. status is "' + xhr.statusText + '" (' + xhr.status + '), readyState is ' + xhr.readyState));
+      _sendLicenseRequestCompleteEvent(eventData, new _vo_DashJSError_js__WEBPACK_IMPORTED_MODULE_58__["default"](_errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_57__["default"].MEDIA_KEY_MESSAGE_LICENSER_ERROR_CODE, _errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_57__["default"].MEDIA_KEY_MESSAGE_LICENSER_ERROR_MESSAGE + keySystemString + ' update, XHR error. status is "' + xhr.statusText + '" (' + xhr.status + '), readyState is ' + xhr.readyState));
     };
     var reqPayload = selectedKeySystem.getLicenseRequestFromMessage(message);
     var reqMethod = licenseServerData.getHTTPMethod(messageType);
     var responseType = licenseServerData.getResponseType(keySystemString, messageType);
     var timeout = protData && !isNaN(protData.httpTimeout) ? protData.httpTimeout : LICENSE_SERVER_REQUEST_DEFAULT_TIMEOUT;
     var sessionId = sessionToken.getSessionId() || null;
-    var licenseRequest = new _vo_LicenseRequest_js__WEBPACK_IMPORTED_MODULE_58__["default"](url, reqMethod, responseType, reqHeaders, withCredentials, messageType, sessionId, reqPayload);
-    var retryAttempts = !isNaN(settings.get().streaming.retryAttempts[_vo_metrics_HTTPRequest_js__WEBPACK_IMPORTED_MODULE_60__.HTTPRequest.LICENSE]) ? settings.get().streaming.retryAttempts[_vo_metrics_HTTPRequest_js__WEBPACK_IMPORTED_MODULE_60__.HTTPRequest.LICENSE] : LICENSE_SERVER_REQUEST_RETRIES;
+    var licenseRequest = new _vo_LicenseRequest_js__WEBPACK_IMPORTED_MODULE_59__["default"](url, reqMethod, responseType, reqHeaders, withCredentials, messageType, sessionId, reqPayload);
+    var retryAttempts = !isNaN(settings.get().streaming.retryAttempts[_vo_metrics_HTTPRequest_js__WEBPACK_IMPORTED_MODULE_61__.HTTPRequest.LICENSE]) ? settings.get().streaming.retryAttempts[_vo_metrics_HTTPRequest_js__WEBPACK_IMPORTED_MODULE_61__.HTTPRequest.LICENSE] : LICENSE_SERVER_REQUEST_RETRIES;
     var licenseRequestFilters = customParametersModel.getLicenseRequestFilters();
     _applyFilters(licenseRequestFilters, licenseRequest).then(function () {
       _doLicenseRequest(licenseRequest, retryAttempts, timeout, onLoad, onAbort, onError);
@@ -93150,13 +93164,13 @@ function ProtectionController(config) {
     var cmcdParameters = cmcdModel.getCmcdParametersFromManifest();
     if (cmcdModel.isCmcdEnabled()) {
       var cmcdMode = cmcdParameters.mode ? cmcdParameters.mode : settings.get().streaming.cmcd.mode;
-      if (cmcdMode === _constants_Constants_js__WEBPACK_IMPORTED_MODULE_62__["default"].CMCD_MODE_QUERY) {
+      if (cmcdMode === _constants_Constants_js__WEBPACK_IMPORTED_MODULE_63__["default"].CMCD_MODE_QUERY) {
         var cmcdParams = cmcdModel.getQueryParameter({
           url: request.url,
-          type: _vo_metrics_HTTPRequest_js__WEBPACK_IMPORTED_MODULE_60__.HTTPRequest.LICENSE
+          type: _vo_metrics_HTTPRequest_js__WEBPACK_IMPORTED_MODULE_61__.HTTPRequest.LICENSE
         });
         if (cmcdParams) {
-          request.url = _core_Utils_js__WEBPACK_IMPORTED_MODULE_61__["default"].addAdditionalQueryParameterToUrl(request.url, [cmcdParams]);
+          request.url = _core_Utils_js__WEBPACK_IMPORTED_MODULE_62__["default"].addAdditionalQueryParameterToUrl(request.url, [cmcdParams]);
         }
       }
     }
@@ -93171,10 +93185,10 @@ function ProtectionController(config) {
     }
     if (cmcdModel.isCmcdEnabled()) {
       var _cmcdMode = cmcdParameters.mode ? cmcdParameters.mode : settings.get().streaming.cmcd.mode;
-      if (_cmcdMode === _constants_Constants_js__WEBPACK_IMPORTED_MODULE_62__["default"].CMCD_MODE_HEADER) {
+      if (_cmcdMode === _constants_Constants_js__WEBPACK_IMPORTED_MODULE_63__["default"].CMCD_MODE_HEADER) {
         var cmcdHeaders = cmcdModel.getHeaderParameters({
           url: request.url,
-          type: _vo_metrics_HTTPRequest_js__WEBPACK_IMPORTED_MODULE_60__.HTTPRequest.LICENSE
+          type: _vo_metrics_HTTPRequest_js__WEBPACK_IMPORTED_MODULE_61__.HTTPRequest.LICENSE
         });
         if (cmcdHeaders) {
           for (var header in cmcdHeaders) {
@@ -93189,7 +93203,7 @@ function ProtectionController(config) {
     var _retryRequest = function _retryRequest() {
       // fail silently and retry
       retriesCount--;
-      var retryInterval = !isNaN(settings.get().streaming.retryIntervals[_vo_metrics_HTTPRequest_js__WEBPACK_IMPORTED_MODULE_60__.HTTPRequest.LICENSE]) ? settings.get().streaming.retryIntervals[_vo_metrics_HTTPRequest_js__WEBPACK_IMPORTED_MODULE_60__.HTTPRequest.LICENSE] : LICENSE_SERVER_REQUEST_RETRY_INTERVAL;
+      var retryInterval = !isNaN(settings.get().streaming.retryIntervals[_vo_metrics_HTTPRequest_js__WEBPACK_IMPORTED_MODULE_61__.HTTPRequest.LICENSE]) ? settings.get().streaming.retryIntervals[_vo_metrics_HTTPRequest_js__WEBPACK_IMPORTED_MODULE_61__.HTTPRequest.LICENSE] : LICENSE_SERVER_REQUEST_RETRY_INTERVAL;
       licenseRequestRetryTimeout = setTimeout(function () {
         _doLicenseRequest(request, retriesCount, timeout, onLoad, onAbort, onError);
       }, retryInterval);
@@ -93275,11 +93289,11 @@ function ProtectionController(config) {
     // No url provided by the app. Check the manifest and the pssh
     else {
       // Check for url defined in the manifest
-      url = _CommonEncryption_js__WEBPACK_IMPORTED_MODULE_53__["default"].getLicenseServerUrlFromMediaInfo(mediaInfoArr, selectedKeySystem.schemeIdURI);
+      url = _CommonEncryption_js__WEBPACK_IMPORTED_MODULE_54__["default"].getLicenseServerUrlFromMediaInfo(mediaInfoArr, selectedKeySystem.schemeIdURI);
 
       // In case we are not using Clearky we can still get a url from the pssh.
       if (!url && !protectionKeyController.isClearKey(selectedKeySystem)) {
-        var psshData = _CommonEncryption_js__WEBPACK_IMPORTED_MODULE_53__["default"].getPSSHData(sessionToken.initData);
+        var psshData = _CommonEncryption_js__WEBPACK_IMPORTED_MODULE_54__["default"].getPSSHData(sessionToken.initData);
         url = selectedKeySystem.getLicenseServerURLFromInitData(psshData);
 
         // Still no url, check the keymessage
@@ -93327,7 +93341,7 @@ function ProtectionController(config) {
         responseText: xhr.statusText || null
       };
     }
-    _sendLicenseRequestCompleteEvent(eventData, new _vo_DashJSError_js__WEBPACK_IMPORTED_MODULE_57__["default"](_errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_56__["default"].MEDIA_KEY_MESSAGE_LICENSER_ERROR_CODE, _errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_56__["default"].MEDIA_KEY_MESSAGE_LICENSER_ERROR_MESSAGE + keySystemString + ' update, XHR complete. status is "' + xhr.statusText + '" (' + xhr.status + '), readyState is ' + xhr.readyState + '.  Response is ' + errorMsg, data));
+    _sendLicenseRequestCompleteEvent(eventData, new _vo_DashJSError_js__WEBPACK_IMPORTED_MODULE_58__["default"](_errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_57__["default"].MEDIA_KEY_MESSAGE_LICENSER_ERROR_CODE, _errors_ProtectionErrors_js__WEBPACK_IMPORTED_MODULE_57__["default"].MEDIA_KEY_MESSAGE_LICENSER_ERROR_MESSAGE + keySystemString + ' update, XHR complete. status is "' + xhr.statusText + '" (' + xhr.status + '), readyState is ' + xhr.readyState + '.  Response is ' + errorMsg, data));
   }
 
   /**
@@ -93361,7 +93375,7 @@ function ProtectionController(config) {
     logger.debug('DRM: onNeedKey');
 
     // Ignore non-cenc initData
-    if (event.key.initDataType !== _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_64__["default"].INITIALIZATION_DATA_TYPE_CENC) {
+    if (event.key.initDataType !== _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_65__["default"].INITIALIZATION_DATA_TYPE_CENC) {
       logger.warn('DRM:  Only \'cenc\' initData is supported!  Ignoring initData of type: ' + event.key.initDataType);
       return;
     }
@@ -93385,7 +93399,7 @@ function ProtectionController(config) {
 
     // If key system has already been selected and initData already seen, then do nothing
     if (selectedKeySystem) {
-      var initDataForKS = _CommonEncryption_js__WEBPACK_IMPORTED_MODULE_53__["default"].getPSSHForKeySystem(selectedKeySystem, abInitData);
+      var initDataForKS = _CommonEncryption_js__WEBPACK_IMPORTED_MODULE_54__["default"].getPSSHForKeySystem(selectedKeySystem, abInitData);
       if (initDataForKS) {
         // Check for duplicate initData
         if (_isInitDataDuplicate(initDataForKS)) {
@@ -93426,13 +93440,13 @@ function ProtectionController(config) {
       }
       e.sessionToken.hasTriggeredKeyStatusMapUpdate = true;
       var parsedKeyStatuses = e.parsedKeyStatuses;
-      var ua = _core_Utils_js__WEBPACK_IMPORTED_MODULE_61__["default"].parseUserAgent();
+      var ua = _core_Utils_js__WEBPACK_IMPORTED_MODULE_62__["default"].parseUserAgent();
       var isEdgeBrowser = ua && ua.browser && ua.browser.name && ua.browser.name.toLowerCase() === 'edge';
       parsedKeyStatuses.forEach(function (keyStatus) {
-        if (isEdgeBrowser && selectedKeySystem.uuid === _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_64__["default"].PLAYREADY_UUID && keyStatus.keyId && keyStatus.keyId.byteLength === 16) {
+        if (isEdgeBrowser && selectedKeySystem.uuid === _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_65__["default"].PLAYREADY_UUID && keyStatus.keyId && keyStatus.keyId.byteLength === 16) {
           _handlePlayreadyKeyId(keyStatus.keyId);
         }
-        var keyIdInHex = _core_Utils_js__WEBPACK_IMPORTED_MODULE_61__["default"].bufferSourceToHex(keyStatus.keyId).slice(0, 32);
+        var keyIdInHex = _core_Utils_js__WEBPACK_IMPORTED_MODULE_62__["default"].bufferSourceToHex(keyStatus.keyId).slice(0, 32);
         if (keyIdInHex && keyIdInHex !== '') {
           keyStatusMap.set(keyIdInHex, keyStatus.status);
         }
@@ -93445,7 +93459,7 @@ function ProtectionController(config) {
     }
   }
   function _handlePlayreadyKeyId(keyId) {
-    var dataView = _core_Utils_js__WEBPACK_IMPORTED_MODULE_61__["default"].bufferSourceToDataView(keyId);
+    var dataView = _core_Utils_js__WEBPACK_IMPORTED_MODULE_62__["default"].bufferSourceToDataView(keyId);
     var part0 = dataView.getUint32(0, /* LE= */true);
     var part1 = dataView.getUint16(4, /* LE= */true);
     var part2 = dataView.getUint16(6, /* LE= */true);
@@ -93461,7 +93475,7 @@ function ProtectionController(config) {
       }
       return (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(normalizedKeyIds).some(function (normalizedKeyId) {
         var keyStatus = keyStatusMap.get(normalizedKeyId);
-        return keyStatus && keyStatus !== _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_64__["default"].MEDIA_KEY_STATUSES.INTERNAL_ERROR && keyStatus !== _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_64__["default"].MEDIA_KEY_STATUSES.OUTPUT_RESTRICTED;
+        return keyStatus && keyStatus !== _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_65__["default"].MEDIA_KEY_STATUSES.INTERNAL_ERROR && keyStatus !== _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_65__["default"].MEDIA_KEY_STATUSES.OUTPUT_RESTRICTED;
       });
     } catch (error) {
       logger.error(error);
@@ -93475,7 +93489,7 @@ function ProtectionController(config) {
       }
       return (0,_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__["default"])(normalizedKeyIds).every(function (normalizedKeyId) {
         var keyStatus = keyStatusMap.get(normalizedKeyId);
-        return keyStatus === _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_64__["default"].MEDIA_KEY_STATUSES.EXPIRED;
+        return keyStatus === _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_65__["default"].MEDIA_KEY_STATUSES.EXPIRED;
       });
     } catch (error) {
       logger.error(error);
@@ -93533,7 +93547,7 @@ function ProtectionController(config) {
   return instance;
 }
 ProtectionController.__dashjs_factory_name = 'ProtectionController';
-/* harmony default export */ __webpack_exports__["default"] = (_core_FactoryMaker_js__WEBPACK_IMPORTED_MODULE_63__["default"].getClassFactory(ProtectionController));
+/* harmony default export */ __webpack_exports__["default"] = (_core_FactoryMaker_js__WEBPACK_IMPORTED_MODULE_64__["default"].getClassFactory(ProtectionController));
 
 /***/ }),
 
@@ -93586,14 +93600,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _drm_KeySystemClearKey_js__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./../drm/KeySystemClearKey.js */ "./src/streaming/protection/drm/KeySystemClearKey.js");
 /* harmony import */ var _drm_KeySystemW3CClearKey_js__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./../drm/KeySystemW3CClearKey.js */ "./src/streaming/protection/drm/KeySystemW3CClearKey.js");
 /* harmony import */ var _drm_KeySystemWidevine_js__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./../drm/KeySystemWidevine.js */ "./src/streaming/protection/drm/KeySystemWidevine.js");
-/* harmony import */ var _drm_KeySystemPlayReady_js__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./../drm/KeySystemPlayReady.js */ "./src/streaming/protection/drm/KeySystemPlayReady.js");
-/* harmony import */ var _servers_DRMToday_js__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./../servers/DRMToday.js */ "./src/streaming/protection/servers/DRMToday.js");
-/* harmony import */ var _servers_PlayReady_js__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./../servers/PlayReady.js */ "./src/streaming/protection/servers/PlayReady.js");
-/* harmony import */ var _servers_Widevine_js__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./../servers/Widevine.js */ "./src/streaming/protection/servers/Widevine.js");
-/* harmony import */ var _servers_ClearKey_js__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./../servers/ClearKey.js */ "./src/streaming/protection/servers/ClearKey.js");
-/* harmony import */ var _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ../../constants/ProtectionConstants.js */ "./src/streaming/constants/ProtectionConstants.js");
-/* harmony import */ var _core_FactoryMaker_js__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! ../../../core/FactoryMaker.js */ "./src/core/FactoryMaker.js");
-/* harmony import */ var _vo_KeySystemMetadata_js__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! ../vo/KeySystemMetadata.js */ "./src/streaming/protection/vo/KeySystemMetadata.js");
+/* harmony import */ var _drm_KeySystemWidevineEsvm_js__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ../drm/KeySystemWidevineEsvm.js */ "./src/streaming/protection/drm/KeySystemWidevineEsvm.js");
+/* harmony import */ var _drm_KeySystemPlayReady_js__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./../drm/KeySystemPlayReady.js */ "./src/streaming/protection/drm/KeySystemPlayReady.js");
+/* harmony import */ var _drm_KeySystemPlayReadyEsvm_js__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./../drm/KeySystemPlayReadyEsvm.js */ "./src/streaming/protection/drm/KeySystemPlayReadyEsvm.js");
+/* harmony import */ var _servers_DRMToday_js__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./../servers/DRMToday.js */ "./src/streaming/protection/servers/DRMToday.js");
+/* harmony import */ var _servers_PlayReady_js__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./../servers/PlayReady.js */ "./src/streaming/protection/servers/PlayReady.js");
+/* harmony import */ var _servers_Widevine_js__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ./../servers/Widevine.js */ "./src/streaming/protection/servers/Widevine.js");
+/* harmony import */ var _servers_ClearKey_js__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! ./../servers/ClearKey.js */ "./src/streaming/protection/servers/ClearKey.js");
+/* harmony import */ var _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! ../../constants/ProtectionConstants.js */ "./src/streaming/constants/ProtectionConstants.js");
+/* harmony import */ var _core_FactoryMaker_js__WEBPACK_IMPORTED_MODULE_49__ = __webpack_require__(/*! ../../../core/FactoryMaker.js */ "./src/core/FactoryMaker.js");
+/* harmony import */ var _vo_KeySystemMetadata_js__WEBPACK_IMPORTED_MODULE_50__ = __webpack_require__(/*! ../vo/KeySystemMetadata.js */ "./src/streaming/protection/vo/KeySystemMetadata.js");
 
 
 
@@ -93674,6 +93690,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
 /**
  * @module ProtectionKeyController
  * @ignore
@@ -93702,7 +93720,14 @@ function ProtectionKeyController() {
     var keySystem;
 
     // PlayReady
-    keySystem = (0,_drm_KeySystemPlayReady_js__WEBPACK_IMPORTED_MODULE_41__["default"])(context).getInstance({
+    keySystem = (0,_drm_KeySystemPlayReady_js__WEBPACK_IMPORTED_MODULE_42__["default"])(context).getInstance({
+      BASE64: BASE64,
+      settings: settings
+    });
+    keySystems.push(keySystem);
+
+    // PlayReady + ESVM (for PS5)
+    keySystem = (0,_drm_KeySystemPlayReadyEsvm_js__WEBPACK_IMPORTED_MODULE_43__["default"])(context).getInstance({
       BASE64: BASE64,
       settings: settings
     });
@@ -93710,6 +93735,12 @@ function ProtectionKeyController() {
 
     // Widevine
     keySystem = (0,_drm_KeySystemWidevine_js__WEBPACK_IMPORTED_MODULE_40__["default"])(context).getInstance({
+      BASE64: BASE64
+    });
+    keySystems.push(keySystem);
+
+    // Widevine + ESVM (for PS5)
+    keySystem = (0,_drm_KeySystemWidevineEsvm_js__WEBPACK_IMPORTED_MODULE_41__["default"])(context).getInstance({
       BASE64: BASE64
     });
     keySystems.push(keySystem);
@@ -93852,7 +93883,7 @@ function ProtectionKeyController() {
         if (contentProtectionElement.schemeIdUri.toLowerCase() === keySystem.schemeIdURI) {
           // Look for DRM-specific ContentProtection
           var initData = keySystem.getInitData(contentProtectionElement, mp4ProtectionElement);
-          var keySystemMetadata = new _vo_KeySystemMetadata_js__WEBPACK_IMPORTED_MODULE_48__["default"]({
+          var keySystemMetadata = new _vo_KeySystemMetadata_js__WEBPACK_IMPORTED_MODULE_50__["default"]({
             ks: keySystems[ksIdx],
             keyId: contentProtectionElement.keyId,
             initData: initData,
@@ -93932,20 +93963,20 @@ function ProtectionKeyController() {
   function getLicenseServerModelInstance(keySystem, protData, messageType) {
     // Our default server implementations do not do anything with "license-release" or
     // "individualization-request" messages, so we just send a success event
-    if (messageType === _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_46__["default"].MEDIA_KEY_MESSAGE_TYPES.LICENSE_RELEASE || messageType === _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_46__["default"].MEDIA_KEY_MESSAGE_TYPES.INDIVIDUALIZATION_REQUEST) {
+    if (messageType === _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_48__["default"].MEDIA_KEY_MESSAGE_TYPES.LICENSE_RELEASE || messageType === _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_48__["default"].MEDIA_KEY_MESSAGE_TYPES.INDIVIDUALIZATION_REQUEST) {
       return null;
     }
     var licenseServerData = null;
     if (protData && protData.hasOwnProperty('drmtoday')) {
-      licenseServerData = (0,_servers_DRMToday_js__WEBPACK_IMPORTED_MODULE_42__["default"])(context).getInstance({
+      licenseServerData = (0,_servers_DRMToday_js__WEBPACK_IMPORTED_MODULE_44__["default"])(context).getInstance({
         BASE64: BASE64
       });
-    } else if (keySystem.systemString === _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_46__["default"].WIDEVINE_KEYSTEM_STRING) {
-      licenseServerData = (0,_servers_Widevine_js__WEBPACK_IMPORTED_MODULE_44__["default"])(context).getInstance();
-    } else if (keySystem.systemString === _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_46__["default"].PLAYREADY_KEYSTEM_STRING) {
-      licenseServerData = (0,_servers_PlayReady_js__WEBPACK_IMPORTED_MODULE_43__["default"])(context).getInstance();
-    } else if (keySystem.systemString === _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_46__["default"].CLEARKEY_KEYSTEM_STRING) {
-      licenseServerData = (0,_servers_ClearKey_js__WEBPACK_IMPORTED_MODULE_45__["default"])(context).getInstance();
+    } else if (keySystem.systemString === _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_48__["default"].WIDEVINE_KEYSTEM_STRING || keySystem.systemString === _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_48__["default"].WIDEVINE_ESVM_KEYSYSTEM_STRING) {
+      licenseServerData = (0,_servers_Widevine_js__WEBPACK_IMPORTED_MODULE_46__["default"])(context).getInstance();
+    } else if (keySystem.systemString === _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_48__["default"].PLAYREADY_KEYSTEM_STRING || keySystem.systemString === _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_48__["default"].PLAYREADY_ESVM_KEYSYSTEM_STRING) {
+      licenseServerData = (0,_servers_PlayReady_js__WEBPACK_IMPORTED_MODULE_45__["default"])(context).getInstance();
+    } else if (keySystem.systemString === _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_48__["default"].CLEARKEY_KEYSTEM_STRING) {
+      licenseServerData = (0,_servers_ClearKey_js__WEBPACK_IMPORTED_MODULE_47__["default"])(context).getInstance();
     }
     return licenseServerData;
   }
@@ -94020,7 +94051,7 @@ function ProtectionKeyController() {
   return instance;
 }
 ProtectionKeyController.__dashjs_factory_name = 'ProtectionKeyController';
-/* harmony default export */ __webpack_exports__["default"] = (_core_FactoryMaker_js__WEBPACK_IMPORTED_MODULE_47__["default"].getSingletonFactory(ProtectionKeyController));
+/* harmony default export */ __webpack_exports__["default"] = (_core_FactoryMaker_js__WEBPACK_IMPORTED_MODULE_49__["default"].getSingletonFactory(ProtectionKeyController));
 
 /***/ }),
 
@@ -94633,6 +94664,368 @@ KeySystemPlayReady.__dashjs_factory_name = 'KeySystemPlayReady';
 
 /***/ }),
 
+/***/ "./src/streaming/protection/drm/KeySystemPlayReadyEsvm.js":
+/*!****************************************************************!*\
+  !*** ./src/streaming/protection/drm/KeySystemPlayReadyEsvm.js ***!
+  \****************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es_error_cause_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.error.cause.js */ "./node_modules/core-js/modules/es.error.cause.js");
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.array.iterator.js */ "./node_modules/core-js/modules/es.array.iterator.js");
+/* harmony import */ var core_js_modules_es_array_push_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.array.push.js */ "./node_modules/core-js/modules/es.array.push.js");
+/* harmony import */ var core_js_modules_es_array_slice_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.array.slice.js */ "./node_modules/core-js/modules/es.array.slice.js");
+/* harmony import */ var core_js_modules_es_array_buffer_constructor_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es.array-buffer.constructor.js */ "./node_modules/core-js/modules/es.array-buffer.constructor.js");
+/* harmony import */ var core_js_modules_es_array_buffer_detached_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/es.array-buffer.detached.js */ "./node_modules/core-js/modules/es.array-buffer.detached.js");
+/* harmony import */ var core_js_modules_es_array_buffer_transfer_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! core-js/modules/es.array-buffer.transfer.js */ "./node_modules/core-js/modules/es.array-buffer.transfer.js");
+/* harmony import */ var core_js_modules_es_array_buffer_transfer_to_fixed_length_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! core-js/modules/es.array-buffer.transfer-to-fixed-length.js */ "./node_modules/core-js/modules/es.array-buffer.transfer-to-fixed-length.js");
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_regexp_exec_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! core-js/modules/es.regexp.exec.js */ "./node_modules/core-js/modules/es.regexp.exec.js");
+/* harmony import */ var core_js_modules_es_string_replace_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! core-js/modules/es.string.replace.js */ "./node_modules/core-js/modules/es.string.replace.js");
+/* harmony import */ var core_js_modules_es_typed_array_uint8_array_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! core-js/modules/es.typed-array.uint8-array.js */ "./node_modules/core-js/modules/es.typed-array.uint8-array.js");
+/* harmony import */ var core_js_modules_es_typed_array_uint16_array_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! core-js/modules/es.typed-array.uint16-array.js */ "./node_modules/core-js/modules/es.typed-array.uint16-array.js");
+/* harmony import */ var core_js_modules_es_typed_array_at_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! core-js/modules/es.typed-array.at.js */ "./node_modules/core-js/modules/es.typed-array.at.js");
+/* harmony import */ var core_js_modules_es_typed_array_copy_within_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! core-js/modules/es.typed-array.copy-within.js */ "./node_modules/core-js/modules/es.typed-array.copy-within.js");
+/* harmony import */ var core_js_modules_es_typed_array_every_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! core-js/modules/es.typed-array.every.js */ "./node_modules/core-js/modules/es.typed-array.every.js");
+/* harmony import */ var core_js_modules_es_typed_array_fill_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! core-js/modules/es.typed-array.fill.js */ "./node_modules/core-js/modules/es.typed-array.fill.js");
+/* harmony import */ var core_js_modules_es_typed_array_filter_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! core-js/modules/es.typed-array.filter.js */ "./node_modules/core-js/modules/es.typed-array.filter.js");
+/* harmony import */ var core_js_modules_es_typed_array_find_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! core-js/modules/es.typed-array.find.js */ "./node_modules/core-js/modules/es.typed-array.find.js");
+/* harmony import */ var core_js_modules_es_typed_array_find_index_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! core-js/modules/es.typed-array.find-index.js */ "./node_modules/core-js/modules/es.typed-array.find-index.js");
+/* harmony import */ var core_js_modules_es_typed_array_find_last_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! core-js/modules/es.typed-array.find-last.js */ "./node_modules/core-js/modules/es.typed-array.find-last.js");
+/* harmony import */ var core_js_modules_es_typed_array_find_last_index_js__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! core-js/modules/es.typed-array.find-last-index.js */ "./node_modules/core-js/modules/es.typed-array.find-last-index.js");
+/* harmony import */ var core_js_modules_es_typed_array_for_each_js__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! core-js/modules/es.typed-array.for-each.js */ "./node_modules/core-js/modules/es.typed-array.for-each.js");
+/* harmony import */ var core_js_modules_es_typed_array_includes_js__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! core-js/modules/es.typed-array.includes.js */ "./node_modules/core-js/modules/es.typed-array.includes.js");
+/* harmony import */ var core_js_modules_es_typed_array_index_of_js__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! core-js/modules/es.typed-array.index-of.js */ "./node_modules/core-js/modules/es.typed-array.index-of.js");
+/* harmony import */ var core_js_modules_es_typed_array_iterator_js__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! core-js/modules/es.typed-array.iterator.js */ "./node_modules/core-js/modules/es.typed-array.iterator.js");
+/* harmony import */ var core_js_modules_es_typed_array_join_js__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! core-js/modules/es.typed-array.join.js */ "./node_modules/core-js/modules/es.typed-array.join.js");
+/* harmony import */ var core_js_modules_es_typed_array_last_index_of_js__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! core-js/modules/es.typed-array.last-index-of.js */ "./node_modules/core-js/modules/es.typed-array.last-index-of.js");
+/* harmony import */ var core_js_modules_es_typed_array_map_js__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! core-js/modules/es.typed-array.map.js */ "./node_modules/core-js/modules/es.typed-array.map.js");
+/* harmony import */ var core_js_modules_es_typed_array_reduce_js__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! core-js/modules/es.typed-array.reduce.js */ "./node_modules/core-js/modules/es.typed-array.reduce.js");
+/* harmony import */ var core_js_modules_es_typed_array_reduce_right_js__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! core-js/modules/es.typed-array.reduce-right.js */ "./node_modules/core-js/modules/es.typed-array.reduce-right.js");
+/* harmony import */ var core_js_modules_es_typed_array_reverse_js__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! core-js/modules/es.typed-array.reverse.js */ "./node_modules/core-js/modules/es.typed-array.reverse.js");
+/* harmony import */ var core_js_modules_es_typed_array_set_js__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! core-js/modules/es.typed-array.set.js */ "./node_modules/core-js/modules/es.typed-array.set.js");
+/* harmony import */ var core_js_modules_es_typed_array_slice_js__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! core-js/modules/es.typed-array.slice.js */ "./node_modules/core-js/modules/es.typed-array.slice.js");
+/* harmony import */ var core_js_modules_es_typed_array_some_js__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! core-js/modules/es.typed-array.some.js */ "./node_modules/core-js/modules/es.typed-array.some.js");
+/* harmony import */ var core_js_modules_es_typed_array_sort_js__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! core-js/modules/es.typed-array.sort.js */ "./node_modules/core-js/modules/es.typed-array.sort.js");
+/* harmony import */ var core_js_modules_es_typed_array_subarray_js__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! core-js/modules/es.typed-array.subarray.js */ "./node_modules/core-js/modules/es.typed-array.subarray.js");
+/* harmony import */ var core_js_modules_es_typed_array_to_locale_string_js__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! core-js/modules/es.typed-array.to-locale-string.js */ "./node_modules/core-js/modules/es.typed-array.to-locale-string.js");
+/* harmony import */ var core_js_modules_es_typed_array_to_reversed_js__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! core-js/modules/es.typed-array.to-reversed.js */ "./node_modules/core-js/modules/es.typed-array.to-reversed.js");
+/* harmony import */ var core_js_modules_es_typed_array_to_sorted_js__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! core-js/modules/es.typed-array.to-sorted.js */ "./node_modules/core-js/modules/es.typed-array.to-sorted.js");
+/* harmony import */ var core_js_modules_es_typed_array_to_string_js__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! core-js/modules/es.typed-array.to-string.js */ "./node_modules/core-js/modules/es.typed-array.to-string.js");
+/* harmony import */ var core_js_modules_es_typed_array_with_js__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! core-js/modules/es.typed-array.with.js */ "./node_modules/core-js/modules/es.typed-array.with.js");
+/* harmony import */ var _CommonEncryption_js__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ../CommonEncryption.js */ "./src/streaming/protection/CommonEncryption.js");
+/* harmony import */ var _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ../../constants/ProtectionConstants.js */ "./src/streaming/constants/ProtectionConstants.js");
+/* harmony import */ var _core_FactoryMaker_js__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ../../../core/FactoryMaker.js */ "./src/core/FactoryMaker.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * The copyright in this software is being made available under the BSD License,
+ * included below. This software may be subject to other third party and contributor
+ * rights, including patent rights, and no such rights are granted under this license.
+ *
+ * Copyright (c) 2013, Dash Industry Forum.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ *  * Redistributions of source code must retain the above copyright notice, this
+ *  list of conditions and the following disclaimer.
+ *  * Redistributions in binary form must reproduce the above copyright notice,
+ *  this list of conditions and the following disclaimer in the documentation and/or
+ *  other materials provided with the distribution.
+ *  * Neither the name of Dash Industry Forum nor the names of its
+ *  contributors may be used to endorse or promote products derived from this software
+ *  without specific prior written permission.
+ *
+ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS AS IS AND ANY
+ *  EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ *  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+ *  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+ *  INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+ *  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ *  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ *  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ *  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ *  POSSIBILITY OF SUCH DAMAGE.
+ */
+
+/**
+ * Microsoft PlayReady DRM, modified to support ESVM on PS5.
+ *
+ * @class
+ * @implements KeySystem
+ */
+
+
+
+var uuid = _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_43__["default"].PLAYREADY_UUID;
+var systemString = _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_43__["default"].PLAYREADY_ESVM_KEYSYSTEM_STRING;
+var schemeIdURI = 'urn:uuid:' + uuid;
+var PRCDMData = '<PlayReadyCDMData type="LicenseAcquisition"><LicenseAcquisition version="1.0" Proactive="false"><CustomData encoding="base64encoded">%CUSTOMDATA%</CustomData></LicenseAcquisition></PlayReadyCDMData>';
+function KeySystemPlayReadyEsvm(config) {
+  config = config || {};
+  var instance;
+  var messageFormat = 'utf-8';
+  var BASE64 = config.BASE64;
+  var settings = config.settings;
+  function checkConfig() {
+    if (!BASE64 || !BASE64.hasOwnProperty('decodeArray') || !BASE64.hasOwnProperty('decodeArray')) {
+      throw new Error('Missing config parameter(s)');
+    }
+  }
+  function getRequestHeadersFromMessage(message) {
+    var msg, xmlDoc;
+    var headers = {};
+    var parser = new DOMParser();
+    if (settings && settings.get().streaming.protection.detectPlayreadyMessageFormat) {
+      // If message format configured/defaulted to utf-16 AND number of bytes is odd, assume 'unwrapped' raw CDM message.
+      if (messageFormat === 'utf-16' && message && message.byteLength % 2 === 1) {
+        headers['Content-Type'] = 'text/xml; charset=utf-8';
+        return headers;
+      }
+    }
+    var dataview = messageFormat === 'utf-16' ? new Uint16Array(message) : new Uint8Array(message);
+    msg = String.fromCharCode.apply(null, dataview);
+    xmlDoc = parser.parseFromString(msg, 'application/xml');
+    var headerNameList = xmlDoc.getElementsByTagName('name');
+    var headerValueList = xmlDoc.getElementsByTagName('value');
+    for (var i = 0; i < headerNameList.length; i++) {
+      headers[headerNameList[i].childNodes[0].nodeValue] = headerValueList[i].childNodes[0].nodeValue;
+    }
+    // Some versions of the PlayReady CDM return 'Content' instead of 'Content-Type'.
+    // this is NOT w3c conform and license servers may reject the request!
+    // -> rename it to proper w3c definition!
+    if (headers.hasOwnProperty('Content')) {
+      headers['Content-Type'] = headers.Content;
+      delete headers.Content;
+    }
+    // Set Content-Type header by default if not provided in the the CDM message (<PlayReadyKeyMessage/>)
+    // or if the message contains directly the challenge itself (Ex: LG SmartTVs)
+    if (!headers.hasOwnProperty('Content-Type')) {
+      headers['Content-Type'] = 'text/xml; charset=utf-8';
+    }
+    return headers;
+  }
+  function getLicenseRequestFromMessage(message) {
+    var licenseRequest = null;
+    var parser = new DOMParser();
+    if (settings && settings.get().streaming.protection.detectPlayreadyMessageFormat) {
+      // If message format configured/defaulted to utf-16 AND number of bytes is odd, assume 'unwrapped' raw CDM message.
+      if (messageFormat === 'utf-16' && message && message.byteLength % 2 === 1) {
+        return message;
+      }
+    }
+    var dataview = messageFormat === 'utf-16' ? new Uint16Array(message) : new Uint8Array(message);
+    checkConfig();
+    var msg = String.fromCharCode.apply(null, dataview);
+    var xmlDoc = parser.parseFromString(msg, 'application/xml');
+    if (xmlDoc.getElementsByTagName('PlayReadyKeyMessage')[0]) {
+      var Challenge = xmlDoc.getElementsByTagName('Challenge')[0].childNodes[0].nodeValue;
+      if (Challenge) {
+        licenseRequest = BASE64.decode(Challenge);
+      }
+    } else {
+      // The message from CDM is not a wrapped message as on IE11 and Edge,
+      // thus it contains direclty the challenge itself
+      // (note that the xmlDoc at this point may be unreadable since it may have been interpreted as UTF-16)
+      return message;
+    }
+    return licenseRequest;
+  }
+  function getLicenseServerURLFromInitData(initData) {
+    if (initData) {
+      var data = new DataView(initData);
+      var numRecords = data.getUint16(4, true);
+      var offset = 6;
+      var parser = new DOMParser();
+      for (var i = 0; i < numRecords; i++) {
+        // Parse the PlayReady Record header
+        var recordType = data.getUint16(offset, true);
+        offset += 2;
+        var recordLength = data.getUint16(offset, true);
+        offset += 2;
+        if (recordType !== 0x0001) {
+          offset += recordLength;
+          continue;
+        }
+        var recordData = initData.slice(offset, offset + recordLength);
+        var record = String.fromCharCode.apply(null, new Uint16Array(recordData));
+        var xmlDoc = parser.parseFromString(record, 'application/xml');
+
+        // First try <LA_URL>
+        if (xmlDoc.getElementsByTagName('LA_URL')[0]) {
+          var laurl = xmlDoc.getElementsByTagName('LA_URL')[0].childNodes[0].nodeValue;
+          if (laurl) {
+            return laurl;
+          }
+        }
+
+        // Optionally, try <LUI_URL>
+        if (xmlDoc.getElementsByTagName('LUI_URL')[0]) {
+          var luiurl = xmlDoc.getElementsByTagName('LUI_URL')[0].childNodes[0].nodeValue;
+          if (luiurl) {
+            return luiurl;
+          }
+        }
+      }
+    }
+    return null;
+  }
+  function getInitData(cpData) {
+    // * desc@ getInitData
+    // *   generate PSSH data from PROHeader defined in MPD file
+    // *   PSSH format:
+    // *   size (4)
+    // *   box type(PSSH) (8)
+    // *   Protection SystemID (16)
+    // *   protection system data size (4) - length of decoded PROHeader
+    // *   decoded PROHeader data from MPD file
+    var PSSHBoxType = new Uint8Array([0x70, 0x73, 0x73, 0x68, 0x00, 0x00, 0x00, 0x00]); //'PSSH' 8 bytes
+    var playreadySystemID = new Uint8Array([0x9a, 0x04, 0xf0, 0x79, 0x98, 0x40, 0x42, 0x86, 0xab, 0x92, 0xe6, 0x5b, 0xe0, 0x88, 0x5f, 0x95]);
+    var byteCursor = 0;
+    var uint8arraydecodedPROHeader = null;
+    var PROSize, PSSHSize, PSSHBoxBuffer, PSSHBox, PSSHData;
+    checkConfig();
+    if (!cpData) {
+      return null;
+    }
+    // Handle common encryption PSSH
+    if ('pssh' in cpData && cpData.pssh) {
+      return _CommonEncryption_js__WEBPACK_IMPORTED_MODULE_42__["default"].parseInitDataFromContentProtection(cpData, BASE64);
+    }
+    // Handle native MS PlayReady ContentProtection elements
+    if ('pro' in cpData && cpData.pro) {
+      uint8arraydecodedPROHeader = BASE64.decodeArray(cpData.pro.__text);
+    } else if ('prheader' in cpData && cpData.prheader) {
+      uint8arraydecodedPROHeader = BASE64.decodeArray(cpData.prheader.__text);
+    } else {
+      return null;
+    }
+    PROSize = uint8arraydecodedPROHeader.length;
+    PSSHSize = 0x4 + PSSHBoxType.length + playreadySystemID.length + 0x4 + PROSize;
+    PSSHBoxBuffer = new ArrayBuffer(PSSHSize);
+    PSSHBox = new Uint8Array(PSSHBoxBuffer);
+    PSSHData = new DataView(PSSHBoxBuffer);
+    PSSHData.setUint32(byteCursor, PSSHSize);
+    byteCursor += 0x4;
+    PSSHBox.set(PSSHBoxType, byteCursor);
+    byteCursor += PSSHBoxType.length;
+    PSSHBox.set(playreadySystemID, byteCursor);
+    byteCursor += playreadySystemID.length;
+    PSSHData.setUint32(byteCursor, PROSize);
+    byteCursor += 0x4;
+    PSSHBox.set(uint8arraydecodedPROHeader, byteCursor);
+    byteCursor += PROSize;
+    return PSSHBox.buffer;
+  }
+
+  /**
+   * It seems that some PlayReady implementations return their XML-based CDM
+   * messages using UTF16, while others return them as UTF8.  Use this function
+   * to modify the message format to expect when parsing CDM messages.
+   *
+   * @param {string} format the expected message format.  Either "utf-8" or "utf-16".
+   * @throws {Error} Specified message format is not one of "utf8" or "utf16"
+   */
+  function setPlayReadyMessageFormat(format) {
+    if (format !== 'utf-8' && format !== 'utf-16') {
+      throw new Error('Specified message format is not one of "utf-8" or "utf-16"');
+    }
+    messageFormat = format;
+  }
+
+  /**
+   * Get Playready Custom data
+   */
+  function getCDMData(_cdmData) {
+    var customData, cdmData, cdmDataBytes, i;
+    checkConfig();
+    if (!_cdmData) {
+      return null;
+    }
+
+    // Convert custom data into multibyte string
+    customData = [];
+    for (i = 0; i < _cdmData.length; ++i) {
+      customData.push(_cdmData.charCodeAt(i));
+      customData.push(0);
+    }
+    customData = String.fromCharCode.apply(null, customData);
+
+    // Encode in Base 64 the custom data string
+    customData = BASE64.encode(customData);
+
+    // Initialize CDM data with Base 64 encoded custom data
+    // (see https://msdn.microsoft.com/en-us/library/dn457361.aspx)
+    cdmData = PRCDMData.replace('%CUSTOMDATA%', customData);
+
+    // Convert CDM data into multibyte characters
+    cdmDataBytes = [];
+    for (i = 0; i < cdmData.length; ++i) {
+      cdmDataBytes.push(cdmData.charCodeAt(i));
+      cdmDataBytes.push(0);
+    }
+    return new Uint8Array(cdmDataBytes).buffer;
+  }
+  instance = {
+    uuid: uuid,
+    schemeIdURI: schemeIdURI,
+    systemString: systemString,
+    getInitData: getInitData,
+    getRequestHeadersFromMessage: getRequestHeadersFromMessage,
+    getLicenseRequestFromMessage: getLicenseRequestFromMessage,
+    getLicenseServerURLFromInitData: getLicenseServerURLFromInitData,
+    getCDMData: getCDMData,
+    setPlayReadyMessageFormat: setPlayReadyMessageFormat
+  };
+  return instance;
+}
+KeySystemPlayReadyEsvm.__dashjs_factory_name = 'KeySystemPlayReadyEsvm';
+/* harmony default export */ __webpack_exports__["default"] = (_core_FactoryMaker_js__WEBPACK_IMPORTED_MODULE_44__["default"].getSingletonFactory(KeySystemPlayReadyEsvm));
+
+/***/ }),
+
 /***/ "./src/streaming/protection/drm/KeySystemW3CClearKey.js":
 /*!**************************************************************!*\
   !*** ./src/streaming/protection/drm/KeySystemW3CClearKey.js ***!
@@ -94997,6 +95390,172 @@ function KeySystemWidevine(config) {
 }
 KeySystemWidevine.__dashjs_factory_name = 'KeySystemWidevine';
 /* harmony default export */ __webpack_exports__["default"] = (_core_FactoryMaker_js__WEBPACK_IMPORTED_MODULE_38__["default"].getSingletonFactory(KeySystemWidevine));
+
+/***/ }),
+
+/***/ "./src/streaming/protection/drm/KeySystemWidevineEsvm.js":
+/*!***************************************************************!*\
+  !*** ./src/streaming/protection/drm/KeySystemWidevineEsvm.js ***!
+  \***************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.iterator.js */ "./node_modules/core-js/modules/es.array.iterator.js");
+/* harmony import */ var core_js_modules_es_array_buffer_constructor_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.array-buffer.constructor.js */ "./node_modules/core-js/modules/es.array-buffer.constructor.js");
+/* harmony import */ var core_js_modules_es_array_buffer_detached_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.array-buffer.detached.js */ "./node_modules/core-js/modules/es.array-buffer.detached.js");
+/* harmony import */ var core_js_modules_es_array_buffer_transfer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.array-buffer.transfer.js */ "./node_modules/core-js/modules/es.array-buffer.transfer.js");
+/* harmony import */ var core_js_modules_es_array_buffer_transfer_to_fixed_length_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/es.array-buffer.transfer-to-fixed-length.js */ "./node_modules/core-js/modules/es.array-buffer.transfer-to-fixed-length.js");
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_typed_array_uint8_array_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! core-js/modules/es.typed-array.uint8-array.js */ "./node_modules/core-js/modules/es.typed-array.uint8-array.js");
+/* harmony import */ var core_js_modules_es_typed_array_at_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! core-js/modules/es.typed-array.at.js */ "./node_modules/core-js/modules/es.typed-array.at.js");
+/* harmony import */ var core_js_modules_es_typed_array_copy_within_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! core-js/modules/es.typed-array.copy-within.js */ "./node_modules/core-js/modules/es.typed-array.copy-within.js");
+/* harmony import */ var core_js_modules_es_typed_array_every_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! core-js/modules/es.typed-array.every.js */ "./node_modules/core-js/modules/es.typed-array.every.js");
+/* harmony import */ var core_js_modules_es_typed_array_fill_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! core-js/modules/es.typed-array.fill.js */ "./node_modules/core-js/modules/es.typed-array.fill.js");
+/* harmony import */ var core_js_modules_es_typed_array_filter_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! core-js/modules/es.typed-array.filter.js */ "./node_modules/core-js/modules/es.typed-array.filter.js");
+/* harmony import */ var core_js_modules_es_typed_array_find_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! core-js/modules/es.typed-array.find.js */ "./node_modules/core-js/modules/es.typed-array.find.js");
+/* harmony import */ var core_js_modules_es_typed_array_find_index_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! core-js/modules/es.typed-array.find-index.js */ "./node_modules/core-js/modules/es.typed-array.find-index.js");
+/* harmony import */ var core_js_modules_es_typed_array_find_last_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! core-js/modules/es.typed-array.find-last.js */ "./node_modules/core-js/modules/es.typed-array.find-last.js");
+/* harmony import */ var core_js_modules_es_typed_array_find_last_index_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! core-js/modules/es.typed-array.find-last-index.js */ "./node_modules/core-js/modules/es.typed-array.find-last-index.js");
+/* harmony import */ var core_js_modules_es_typed_array_for_each_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! core-js/modules/es.typed-array.for-each.js */ "./node_modules/core-js/modules/es.typed-array.for-each.js");
+/* harmony import */ var core_js_modules_es_typed_array_includes_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! core-js/modules/es.typed-array.includes.js */ "./node_modules/core-js/modules/es.typed-array.includes.js");
+/* harmony import */ var core_js_modules_es_typed_array_index_of_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! core-js/modules/es.typed-array.index-of.js */ "./node_modules/core-js/modules/es.typed-array.index-of.js");
+/* harmony import */ var core_js_modules_es_typed_array_iterator_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! core-js/modules/es.typed-array.iterator.js */ "./node_modules/core-js/modules/es.typed-array.iterator.js");
+/* harmony import */ var core_js_modules_es_typed_array_join_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! core-js/modules/es.typed-array.join.js */ "./node_modules/core-js/modules/es.typed-array.join.js");
+/* harmony import */ var core_js_modules_es_typed_array_last_index_of_js__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! core-js/modules/es.typed-array.last-index-of.js */ "./node_modules/core-js/modules/es.typed-array.last-index-of.js");
+/* harmony import */ var core_js_modules_es_typed_array_map_js__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! core-js/modules/es.typed-array.map.js */ "./node_modules/core-js/modules/es.typed-array.map.js");
+/* harmony import */ var core_js_modules_es_typed_array_reduce_js__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! core-js/modules/es.typed-array.reduce.js */ "./node_modules/core-js/modules/es.typed-array.reduce.js");
+/* harmony import */ var core_js_modules_es_typed_array_reduce_right_js__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! core-js/modules/es.typed-array.reduce-right.js */ "./node_modules/core-js/modules/es.typed-array.reduce-right.js");
+/* harmony import */ var core_js_modules_es_typed_array_reverse_js__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! core-js/modules/es.typed-array.reverse.js */ "./node_modules/core-js/modules/es.typed-array.reverse.js");
+/* harmony import */ var core_js_modules_es_typed_array_set_js__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! core-js/modules/es.typed-array.set.js */ "./node_modules/core-js/modules/es.typed-array.set.js");
+/* harmony import */ var core_js_modules_es_typed_array_slice_js__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! core-js/modules/es.typed-array.slice.js */ "./node_modules/core-js/modules/es.typed-array.slice.js");
+/* harmony import */ var core_js_modules_es_typed_array_some_js__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! core-js/modules/es.typed-array.some.js */ "./node_modules/core-js/modules/es.typed-array.some.js");
+/* harmony import */ var core_js_modules_es_typed_array_sort_js__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! core-js/modules/es.typed-array.sort.js */ "./node_modules/core-js/modules/es.typed-array.sort.js");
+/* harmony import */ var core_js_modules_es_typed_array_subarray_js__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! core-js/modules/es.typed-array.subarray.js */ "./node_modules/core-js/modules/es.typed-array.subarray.js");
+/* harmony import */ var core_js_modules_es_typed_array_to_locale_string_js__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! core-js/modules/es.typed-array.to-locale-string.js */ "./node_modules/core-js/modules/es.typed-array.to-locale-string.js");
+/* harmony import */ var core_js_modules_es_typed_array_to_reversed_js__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! core-js/modules/es.typed-array.to-reversed.js */ "./node_modules/core-js/modules/es.typed-array.to-reversed.js");
+/* harmony import */ var core_js_modules_es_typed_array_to_sorted_js__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! core-js/modules/es.typed-array.to-sorted.js */ "./node_modules/core-js/modules/es.typed-array.to-sorted.js");
+/* harmony import */ var core_js_modules_es_typed_array_to_string_js__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! core-js/modules/es.typed-array.to-string.js */ "./node_modules/core-js/modules/es.typed-array.to-string.js");
+/* harmony import */ var core_js_modules_es_typed_array_with_js__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! core-js/modules/es.typed-array.with.js */ "./node_modules/core-js/modules/es.typed-array.with.js");
+/* harmony import */ var _CommonEncryption_js__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ../CommonEncryption.js */ "./src/streaming/protection/CommonEncryption.js");
+/* harmony import */ var _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ../../constants/ProtectionConstants.js */ "./src/streaming/constants/ProtectionConstants.js");
+/* harmony import */ var _core_FactoryMaker_js__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ../../../core/FactoryMaker.js */ "./src/core/FactoryMaker.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * The copyright in this software is being made available under the BSD License,
+ * included below. This software may be subject to other third party and contributor
+ * rights, including patent rights, and no such rights are granted under this license.
+ *
+ * Copyright (c) 2013, Dash Industry Forum.
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ *  * Redistributions of source code must retain the above copyright notice, this
+ *  list of conditions and the following disclaimer.
+ *  * Redistributions in binary form must reproduce the above copyright notice,
+ *  this list of conditions and the following disclaimer in the documentation and/or
+ *  other materials provided with the distribution.
+ *  * Neither the name of Dash Industry Forum nor the names of its
+ *  contributors may be used to endorse or promote products derived from this software
+ *  without specific prior written permission.
+ *
+ *  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS AS IS AND ANY
+ *  EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ *  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+ *  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+ *  INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+ *  NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+ *  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ *  WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ *  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ *  POSSIBILITY OF SUCH DAMAGE.
+ */
+
+/**
+ * Google Widevine DRM, modified to support ESVM on PS5.
+ *
+ * @class
+ * @implements MediaPlayer.dependencies.protection.KeySystem
+ */
+
+
+
+
+var uuid = _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_37__["default"].WIDEVINE_UUID;
+var systemString = _constants_ProtectionConstants_js__WEBPACK_IMPORTED_MODULE_37__["default"].WIDEVINE_ESVM_KEYSYSTEM_STRING;
+var schemeIdURI = 'urn:uuid:' + uuid;
+function KeySystemWidevineEsvm(config) {
+  config = config || {};
+  var instance;
+  var BASE64 = config.BASE64;
+  function getInitData(cp) {
+    return _CommonEncryption_js__WEBPACK_IMPORTED_MODULE_36__["default"].parseInitDataFromContentProtection(cp, BASE64);
+  }
+  function getRequestHeadersFromMessage(/*message*/
+  ) {
+    return null;
+  }
+  function getLicenseRequestFromMessage(message) {
+    return new Uint8Array(message);
+  }
+  function getLicenseServerURLFromInitData(/*initData*/
+  ) {
+    return null;
+  }
+  function getCDMData(/*cdmData*/
+  ) {
+    return null;
+  }
+  instance = {
+    uuid: uuid,
+    schemeIdURI: schemeIdURI,
+    systemString: systemString,
+    getInitData: getInitData,
+    getRequestHeadersFromMessage: getRequestHeadersFromMessage,
+    getLicenseRequestFromMessage: getLicenseRequestFromMessage,
+    getLicenseServerURLFromInitData: getLicenseServerURLFromInitData,
+    getCDMData: getCDMData
+  };
+  return instance;
+}
+KeySystemWidevineEsvm.__dashjs_factory_name = 'KeySystemWidevineEsvm';
+/* harmony default export */ __webpack_exports__["default"] = (_core_FactoryMaker_js__WEBPACK_IMPORTED_MODULE_38__["default"].getSingletonFactory(KeySystemWidevineEsvm));
 
 /***/ }),
 

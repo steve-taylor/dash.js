@@ -271,10 +271,18 @@ function ProtectionController(config) {
         }
     }
 
+    /**
+     * Prioritise key systems first by whether they're in the provided protectionData, then by their priority within protectionData.
+     *
+     * Key systems not in protectionData or without a specified priority will be added to the end of the list and will retain their original relative to each other.
+     *
+     * @param {Array} supportedKeySystems - list of supported key systems to sort
+     * @returns {Array} the sorted key systems
+     */
     function _sortKeySystemsByPriority(supportedKeySystems) {
         return supportedKeySystems.sort((ksA, ksB) => {
-            let indexA = (applicationProvidedProtectionData && applicationProvidedProtectionData[ksA.ks.systemString] && applicationProvidedProtectionData[ksA.ks.systemString].priority >= 0) ? applicationProvidedProtectionData[ksA.ks.systemString].priority : supportedKeySystems.length;
-            let indexB = (applicationProvidedProtectionData && applicationProvidedProtectionData[ksB.ks.systemString] && applicationProvidedProtectionData[ksB.ks.systemString].priority >= 0) ? applicationProvidedProtectionData[ksB.ks.systemString].priority : supportedKeySystems.length;
+            let indexA = applicationProvidedProtectionData?.[ksA.ks.systemString]?.priority ?? Number.MAX_SAFE_INTEGER;
+            let indexB = applicationProvidedProtectionData?.[ksB.ks.systemString]?.priority ?? Number.MAX_SAFE_INTEGER;
             return indexA - indexB;
         });
     }
